@@ -1,0 +1,78 @@
+@import 'styles/colors';
+
+.root {
+  // border-radius: 4px;
+  border-bottom: 1px solid lightgray;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  &:hover {
+    .date {
+      display: none;
+    }
+    .actions {
+      display: inline;
+    }
+    .details {
+      justify-content: center;
+    }
+  }
+  > div {
+    align-self: stretch;
+  }
+}
+
+.flexCentered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.truncated {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.content {
+  text-align: left;
+  flex: 1 1 auto;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.title {
+  @extend .truncated;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.subTitle {
+  @extend .truncated;
+  font-style: 0.85rem;
+  color: darken($outline-color, 30%);
+}
+
+.details {
+  display: flex;
+  justify-content: flex-end;
+  width: 56px;
+  @extend .flexCentered;
+}
+
+.date {
+  color: darken($outline-color, 30%);
+}
+
+.actions {
+  display: none;
+  button {
+    border-radius: 50%;
+  }
+}

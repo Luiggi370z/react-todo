@@ -1,0 +1,19 @@
+@import 'styles/colors';
+
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 14px;
+  border: 1px solid lightgray;
+  svg {
+    width: 22px;
+    height: 22px;
+    color: lighten($secondary-color, 30%);
+  }
+}

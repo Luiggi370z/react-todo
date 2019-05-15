@@ -1,0 +1,95 @@
+@import 'styles/colors';
+
+.todoIcon {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0 0;
+  display: flex;
+  justify-content: center;
+  > span {
+    cursor: pointer;
+  }
+  &:hover {
+    span {
+      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+    }
+  }
+}
+
+.form {
+  padding: 0.5rem 1.5rem 1rem;
+  > div {
+    margin: 8px 0;
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background: $outline-color;
+    height: auto;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+.date {
+  display: flex;
+  > input {
+    flex: 1;
+  }
+  label {
+    margin: 0;
+  }
+}
+
+.allDay {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 5px;
+}
+
+.category {
+  span {
+    width: 100%;
+  }
+  input {
+    cursor: pointer;
+  }
+}
+
+.inputGroup {
+  display: block;
+  position: relative;
+  input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background: $outline-color;
+    height: auto;
+    padding: 5px 5px 5px 12px;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 0.9rem;
+    &:not(:last-child) {
+      padding-right: 40px;
+    }
+    &:focus {
+      box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
+        inset 0 1px 1px rgba(16, 22, 26, 0.2);
+    }
+  }
+  button {
+    min-width: 30px;
+    min-height: 30px;
+    margin: 5px;
+    &:last-child {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+}
