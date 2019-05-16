@@ -1,6 +1,7 @@
 @import '~normalize.css';
 @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
+@import '~@blueprintjs/datetime/lib/css/blueprint-datetime.css';
 
 body {
   margin: 0;
@@ -31,11 +32,16 @@ body {
   align-items: center;
 }
 
+/* Overwrite some styles from Blueprint */
 .bp3-control input:focus ~ .bp3-control-indicator,
 input:focus,
 input:active,
 button:active,
 button:focus {
+  outline: none;
+}
+
+:focus {
   outline: none;
 }
 

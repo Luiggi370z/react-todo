@@ -8,11 +8,13 @@
   flex-wrap: wrap;
   overflow-x: hidden;
   overflow-y: auto;
-  > div {
-    svg {
-      width: 22px;
-      height: 22px;
-      color: lighten($secondary-color, 30%);
-    }
+  svg {
+    width: 22px;
+    height: 22px;
+    color: lighten($secondary-color, 30%);
+    pointer-events: none;
+  }
+  span {
+    pointer-events: none;
   }
 }

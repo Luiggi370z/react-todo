@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './index.module.scss'
-import { Button } from '@blueprintjs/core'
+import { Button, Icon } from '@blueprintjs/core'
 import Categories from '../../mocks/categories'
 
 const Summary = ({ todos }) => {
@@ -19,13 +19,13 @@ const Summary = ({ todos }) => {
             {todos.filter(todo => !todo.done).length}
           </div>
         </div>
-        {Categories.map(category => (
-          <div key={category.id}>
-            <div className={styles.label}>{category.name}</div>
-            <div className={styles.category}>
-              <div class={`category-dot ${category.name.toLowerCase()}`} />
+        {Object.keys(Categories).map(key => (
+          <div key={key}>
+            <div className={styles.label}>{Categories[key]}</div>
+            <div className={`${styles.category} ${styles[key]}`}>
+              <Icon icon='symbol-circle' />
             </div>
-            <div className={styles.value}>{countByCategory(category.id)}</div>
+            <div className={styles.value}>{countByCategory(key)}</div>
           </div>
         ))}
       </div>

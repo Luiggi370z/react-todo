@@ -3,17 +3,36 @@
 .root {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .icon {
   border-radius: 50%;
   min-width: 40px;
   min-height: 40px;
-  padding: 14px;
+  padding: 18px;
   border: 1px solid lightgray;
   svg {
     width: 22px;
     height: 22px;
-    color: lighten($secondary-color, 30%);
+    color: $primary-color-dark1;
   }
+  &.large {
+    svg {
+      width: 38px;
+      height: 38px;
+    }
+  }
+  &.disabled {
+    svg {
+      color: $placeholder-color;
+    }
+  }
+}
+
+.badge {
+  position: absolute;
+  border-radius: 50%;
+  right: 0;
+  bottom: 0;
 }

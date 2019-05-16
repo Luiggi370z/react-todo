@@ -26,18 +26,36 @@ const availableIcons = [
   'dollar'
 ]
 
-const IconSelector = props => {
+const IconSelector = ({ field, onSelect }) => {
+  const handleChange = e => {
+    onSelect({
+      target: {
+        value: e.target.name,
+        name: field
+      }
+    })
+  }
+
   return (
     <div className={styles.root}>
       {availableIcons.map(name => (
-        <div key='name'>
-          <Button icon={name} minimal large />
+        <div key={name}>
+          <Button
+            minimal
+            large
+            name={name}
+            icon={name}
+            onClick={handleChange}
+          />
         </div>
       ))}
     </div>
   )
 }
 
-IconSelector.propTypes = {}
+IconSelector.propTypes = {
+  field: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired
+}
 
 export default IconSelector

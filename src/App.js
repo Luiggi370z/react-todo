@@ -15,7 +15,7 @@ class App extends React.Component {
       {
         id: 1,
         icon: 'highlight',
-        category: 1,
+        category: '1',
         description: 'Deliver design',
         location: 'Lima Office',
         date: addDays(new Date(), 2),
@@ -24,7 +24,7 @@ class App extends React.Component {
       {
         id: 2,
         icon: 'walk',
-        category: 2,
+        category: '2',
         description: 'Run with friends',
         location: 'Central Park',
         date: addDays(new Date(), 3),
@@ -33,7 +33,7 @@ class App extends React.Component {
       {
         id: 3,
         icon: 'shop',
-        category: 3,
+        category: '3',
         description: "Buy mother's day present",
         location: 'Jockey Plaza Shopping Center',
         date: new Date(),

@@ -1,0 +1,11 @@
+@import 'styles/colors';
+
+@mixin categories-colors {
+  @for $i from 1 through 4 {
+    #{'.'}#{$i} {
+      span {
+        color: nth($categories-colors, $i) !important;
+      }
+    }
+  }
+}

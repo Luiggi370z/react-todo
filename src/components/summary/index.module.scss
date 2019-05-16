@@ -1,4 +1,4 @@
-@import './styles/colors.scss';
+@import './styles/mixins.scss';
 
 .summary {
   width: 100%;
@@ -19,7 +19,6 @@
 }
 
 .category {
-  text-align: center;
   display: flex;
   align-items: center;
 }
@@ -30,3 +29,5 @@
   text-align: right;
   flex: 1;
 }
+
+@include categories-colors;

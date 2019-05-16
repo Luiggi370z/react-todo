@@ -1,18 +1,24 @@
 @import 'styles/colors';
+@import 'styles/mixins';
 
 .todoIcon {
   width: 100%;
   text-align: center;
-  padding: 1rem 0 0;
+  padding: 1rem 0 0.5rem;
   display: flex;
   justify-content: center;
-  > span {
-    cursor: pointer;
-  }
-  &:hover {
-    span {
-      box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  span {
+    &:global(.bp3-popover-target) {
+      cursor: pointer;
       border-radius: 50%;
+      background: $outline-color;
+      &:hover {
+        background: darken($outline-color, 2%);
+      }
+      &:global(.bp3-popover-open) {
+        box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
+          inset 0 1px 1px rgba(16, 22, 26, 0.2);
+      }
     }
   }
 }
@@ -23,25 +29,39 @@
     margin: 8px 0;
     width: 100%;
   }
-
-  input {
-    width: 100%;
-    border-radius: 5px;
-    border: none;
-    background: $outline-color;
-    height: auto;
-    padding: 12px;
-    font-size: 0.9rem;
-  }
 }
 
 .date {
   display: flex;
-  > input {
+  > div:first-of-type {
     flex: 1;
   }
   label {
     margin: 0;
+  }
+  :global(.bp3-popover-target) {
+    width: 100%;
+    input {
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+      background: $outline-color;
+      height: auto;
+      padding: 5px 5px 5px 12px;
+      vertical-align: middle;
+      line-height: 30px;
+      font-size: 0.9rem;
+      box-shadow: none;
+      &:focus {
+        box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
+          inset 0 1px 1px rgba(16, 22, 26, 0.2);
+      }
+    }
+  }
+  :global(.bp3-popover-target:hover) {
+    input {
+      background: darken($outline-color, 2%);
+    }
   }
 }
 
@@ -50,10 +70,26 @@
   align-items: center;
   padding-left: 15px;
   padding-right: 5px;
+
+  :global(.bp3-control.bp3-switch
+      input:not(:checked)
+      ~ .bp3-control-indicator) {
+    background: $outline-color;
+  }
+
+  :global(.bp3-control.bp3-switch:hover
+      input:not(:checked)
+      ~ .bp3-control-indicator) {
+    background: darken($outline-color, 2%);
+  }
+
+  :global(.bp3-control.bp3-switch input:checked ~ .bp3-control-indicator) {
+    background: $primary-color-dark1;
+  }
 }
 
 .category {
-  span {
+  span:global(.bp3-popover-target) {
     width: 100%;
   }
   input {
@@ -64,6 +100,11 @@
 .inputGroup {
   display: block;
   position: relative;
+  &:hover {
+    input {
+      background: darken($outline-color, 2%);
+    }
+  }
   input {
     width: 100%;
     border-radius: 5px;
@@ -74,6 +115,10 @@
     vertical-align: middle;
     line-height: 30px;
     font-size: 0.9rem;
+    box-shadow: none;
+    &::placeholder {
+      color: $placeholder-color !important;
+    }
     &:not(:last-child) {
       padding-right: 40px;
     }
@@ -82,7 +127,8 @@
         inset 0 1px 1px rgba(16, 22, 26, 0.2);
     }
   }
-  button {
+  > span:global(.bp3-icon),
+  > button {
     min-width: 30px;
     min-height: 30px;
     margin: 5px;
@@ -91,5 +137,41 @@
       top: 0;
       right: 0;
     }
+  }
+  > span:global(.bp3-icon) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@include categories-colors;
+
+.saveButton:not([disabled]) {
+  color: $primary-color-dark1 !important;
+  font-weight: 500;
+  &:hover {
+    background: rgba($primary-color-dark1, 0.1) !important;
+  }
+  &:active {
+    background: rgba($primary-color-dark1, 0.15) !important;
+  }
+}
+
+.hint {
+  font-size: 0.7rem;
+  color: $placeholder-color;
+  vertical-align: super;
+}
+
+.badge {
+  background: #8f8f8f;
+  color: #fff;
+  position: relative;
+  border-radius: inherit;
+  padding: 5px;
+  svg {
+    width: 13px;
+    height: 13px;
   }
 }

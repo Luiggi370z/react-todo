@@ -1,0 +1,9 @@
+@import 'styles/mixins';
+
+.category {
+  * {
+    pointer-events: none;
+  }
+}
+
+@include categories-colors;
