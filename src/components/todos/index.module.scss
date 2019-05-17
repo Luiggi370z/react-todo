@@ -33,3 +33,23 @@
     }
   }
 }
+
+.toolbar {
+  display: flex;
+}
+
+.filter {
+  flex: 0 1;
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  flex: 1 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  > * {
+    margin: 0 3px;
+  }
+}

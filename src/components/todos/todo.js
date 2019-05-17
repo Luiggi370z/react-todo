@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './todo.module.scss'
-import { distanceInWordsToNow } from 'date-fns'
+import { format } from 'date-fns'
 import { Button } from '@blueprintjs/core'
 import TodoIcon from '../todoIcon'
 
@@ -14,11 +14,10 @@ const Todo = ({ todo }) => {
         <div className={styles.subTitle}>{todo.location}</div>
       </div>
       <div className={styles.details}>
-        <span className={styles.date}>
-          {distanceInWordsToNow(todo.date, { addSuffix: true })}
-        </span>
+        <span className={styles.date}>{format(todo.date, 'ha')}</span>
         <div className={styles.actions}>
           <Button icon={'tick'} minimal />
+          <Button icon={'trash'} minimal />
         </div>
       </div>
     </div>

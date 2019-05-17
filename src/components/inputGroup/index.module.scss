@@ -1,0 +1,38 @@
+@import 'styles/colors';
+@import 'styles/input';
+
+.inputGroup {
+  display: block;
+  position: relative;
+  &:hover {
+    input {
+      background: darken($outline-color, 2%);
+    }
+  }
+  input {
+    @extend .baseInput;
+    &::placeholder {
+      color: $placeholder-color !important;
+    }
+    &:not(:last-child) {
+      padding-right: 40px;
+    }
+  }
+  > span:global(.bp3-icon),
+  > button {
+    min-width: 30px;
+    min-height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    &:last-child {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+  > span:global(.bp3-icon) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

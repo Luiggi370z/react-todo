@@ -8,6 +8,7 @@ import Header from '../header'
 import TodoIcon from '../todoIcon'
 import IconSelector from '../iconSelector'
 import CategorySelector from './categorySelector'
+import InputGroup from '../inputGroup'
 import Categories from '../../mocks/categories'
 
 class NewTodo extends Component {
@@ -34,12 +35,14 @@ class NewTodo extends Component {
     this.setState({ [target.name]: value })
   }
 
+  handleClear = field => this.setState({ [field]: '' })
+
   handleDateChange = (date, isUserChange) => {
     if (isUserChange) this.setState({ date: date })
   }
 
   render() {
-    const { description, location, date, icon } = this.state
+    const { description, location, date, icon, category } = this.state
     const canSave = description && location && date && icon
 
     return (
@@ -58,7 +61,7 @@ class NewTodo extends Component {
               disabled={!icon}
               badge={
                 icon && (
-                  <Icon icon='refresh' size={'12'} className={styles.badge} />
+                  <Icon icon='edit' size={'12'} className={styles.badge} />
                 )
               }
             />
@@ -72,45 +75,38 @@ class NewTodo extends Component {
               content={
                 <CategorySelector
                   onSelect={this.handleChange}
-                  field={'category'}
+                  field='category'
                 />
               }
               position={Position.BOTTOM_LEFT}>
-              <div
-                className={`${styles.inputGroup} ${
-                  styles[this.state.category]
-                }`}>
-                <input
-                  placeholder='Category'
-                  readOnly
-                  value={Categories[this.state.category]}
-                />
+              <InputGroup
+                className={styles[category]}
+                value={Categories[category]}
+                canClear={false}
+                readOnly>
                 <Icon icon='symbol-circle' />
-              </div>
+              </InputGroup>
             </Popover>
           </div>
           <div>
-            <div className={styles.inputGroup}>
-              <input
-                name='description'
-                placeholder='What I have to do? *'
-                value={description}
-                onChange={this.handleChange}
-              />
-
-              {description && <Button icon={'cross'} minimal />}
-            </div>
+            <InputGroup
+              name='description'
+              placeholder='What I have to do? *'
+              value={description}
+              autoComplete='off'
+              onChange={this.handleChange}
+              onClear={this.handleClear}
+            />
           </div>
           <div>
-            <div className={styles.inputGroup}>
-              <input
-                name='location'
-                placeholder='Where? *'
-                value={location}
-                onChange={this.handleChange}
-              />
-              {location && <Button icon={'cross'} minimal />}
-            </div>
+            <InputGroup
+              name='location'
+              placeholder='What I have to do? *'
+              value={location}
+              autoComplete='off'
+              onChange={this.handleChange}
+              onClear={this.handleClear}
+            />
           </div>
           <div className={styles.date}>
             <div>

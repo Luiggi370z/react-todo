@@ -1,5 +1,6 @@
 @import 'styles/colors';
 @import 'styles/mixins';
+@import 'styles/input';
 
 .todoIcon {
   width: 100%;
@@ -42,20 +43,7 @@
   :global(.bp3-popover-target) {
     width: 100%;
     input {
-      width: 100%;
-      border-radius: 5px;
-      border: none;
-      background: $outline-color;
-      height: auto;
-      padding: 5px 5px 5px 12px;
-      vertical-align: middle;
-      line-height: 30px;
-      font-size: 0.9rem;
-      box-shadow: none;
-      &:focus {
-        box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
-          inset 0 1px 1px rgba(16, 22, 26, 0.2);
-      }
+      @extend .baseInput;
     }
   }
   :global(.bp3-popover-target:hover) {
@@ -97,54 +85,6 @@
   }
 }
 
-.inputGroup {
-  display: block;
-  position: relative;
-  &:hover {
-    input {
-      background: darken($outline-color, 2%);
-    }
-  }
-  input {
-    width: 100%;
-    border-radius: 5px;
-    border: none;
-    background: $outline-color;
-    height: auto;
-    padding: 5px 5px 5px 12px;
-    vertical-align: middle;
-    line-height: 30px;
-    font-size: 0.9rem;
-    box-shadow: none;
-    &::placeholder {
-      color: $placeholder-color !important;
-    }
-    &:not(:last-child) {
-      padding-right: 40px;
-    }
-    &:focus {
-      box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
-        inset 0 1px 1px rgba(16, 22, 26, 0.2);
-    }
-  }
-  > span:global(.bp3-icon),
-  > button {
-    min-width: 30px;
-    min-height: 30px;
-    margin: 5px;
-    &:last-child {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-  > span:global(.bp3-icon) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
 @include categories-colors;
 
 .saveButton:not([disabled]) {
@@ -165,7 +105,7 @@
 }
 
 .badge {
-  background: #8f8f8f;
+  background: #b5b5b5;
   color: #fff;
   position: relative;
   border-radius: inherit;
