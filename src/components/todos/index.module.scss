@@ -3,12 +3,12 @@
 .root {
   display: flex;
   flex-flow: column;
+  height: 100%;
 }
 
 .list {
-  padding: 1rem 1.5rem;
+  padding-bottom: 1rem;
   overflow-y: auto;
-  flex: 1 0 100%;
 }
 
 .progress {
@@ -36,6 +36,28 @@
 
 .toolbar {
   display: flex;
+  padding: 0.6rem 1rem 0.5rem;
+  position: relative;
+  &:after {
+    content: '';
+    transition: opacity 300ms ease;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: -2rem;
+    right: -2rem;
+    height: 1.6rem;
+    background: linear-gradient(
+      to bottom,
+      $outline-color 0%,
+      rgba(240, 244, 247, 0) 100%
+    );
+  }
+  &.scrolled {
+    &:after {
+      opacity: 1;
+    }
+  }
 }
 
 .filter {

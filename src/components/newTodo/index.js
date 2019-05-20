@@ -101,7 +101,7 @@ class NewTodo extends Component {
           <div>
             <InputGroup
               name='location'
-              placeholder='What I have to do? *'
+              placeholder='Where? *'
               value={location}
               autoComplete='off'
               onChange={this.handleChange}

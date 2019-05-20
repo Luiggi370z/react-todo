@@ -7,8 +7,8 @@ import TodoIcon from '../todoIcon'
 
 const Todo = ({ todo }) => {
   return (
-    <div className={styles.root}>
-      <TodoIcon icon={todo.icon} />
+    <div className={`${styles.root} ${todo.done ? styles.done : ''}`}>
+      <TodoIcon icon={todo.icon} disabled={todo.done} />
       <div className={styles.content}>
         <div className={styles.title}>{todo.description}</div>
         <div className={styles.subTitle}>{todo.location}</div>
@@ -16,7 +16,7 @@ const Todo = ({ todo }) => {
       <div className={styles.details}>
         <span className={styles.date}>{format(todo.date, 'ha')}</span>
         <div className={styles.actions}>
-          <Button icon={'tick'} minimal />
+          {!todo.done && <Button icon={'tick'} minimal />}
           <Button icon={'trash'} minimal />
         </div>
       </div>
