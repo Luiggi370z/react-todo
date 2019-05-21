@@ -56,6 +56,33 @@ class App extends React.Component {
         location: 'Jockey Plaza Shopping Center',
         date: new Date(),
         done: true
+      },
+      {
+        id: 6,
+        icon: 'shop',
+        category: '3',
+        description: "Buy mother's day present",
+        location: 'Jockey Plaza Shopping Center',
+        date: addDays(new Date(), 10),
+        done: true
+      },
+      {
+        id: 7,
+        icon: 'shop',
+        category: '3',
+        description: "Buy mother's day present",
+        location: 'Jockey Plaza Shopping Center',
+        date: addDays(new Date(), 10),
+        done: false
+      },
+      {
+        id: 8,
+        icon: 'shop',
+        category: '3',
+        description: "Buy mother's day present",
+        location: 'Jockey Plaza Shopping Center',
+        date: addDays(new Date(), 30),
+        done: true
       }
     ],
     addNew: false

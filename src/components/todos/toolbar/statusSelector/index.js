@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, MenuItem } from '@blueprintjs/core'
-import styles from './statusSelector.module.scss'
+import styles from './index.module.scss'
 const statuses = ['All', 'Done', 'Pending']
 
 const StatusSelector = ({ onSelect }) => {

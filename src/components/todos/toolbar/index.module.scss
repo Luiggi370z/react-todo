@@ -1,0 +1,43 @@
+@import 'styles/colors';
+
+.toolbar {
+  display: flex;
+  padding: 0.6rem 1rem 0.5rem;
+  position: relative;
+  &:after {
+    content: '';
+    transition: opacity 300ms ease;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: -2rem;
+    right: -2rem;
+    height: 1.6rem;
+    background: linear-gradient(
+      to bottom,
+      $outline-color 0%,
+      rgba(240, 244, 247, 0) 100%
+    );
+  }
+  &.scrolled {
+    &:after {
+      opacity: 1;
+    }
+  }
+}
+
+.filter {
+  flex: 0 1;
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  flex: 1 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  > * {
+    margin: 0 3px;
+  }
+}

@@ -1,23 +1,11 @@
 import React, { Component } from 'react'
-import {
-  format,
-  isToday,
-  isTomorrow,
-  isYesterday,
-  isThisWeek,
-  isThisYear
-} from 'date-fns'
-import {
-  Spinner,
-  Button,
-  ButtonGroup,
-  AnchorButton,
-  Popover,
-  Position
-} from '@blueprintjs/core'
+import { format } from 'date-fns'
+
 import Header from '../header'
-import Todo from './todo.js'
-import StatusSelector from './statusSelector'
+import Todo from './todo'
+import Progress from '../progress'
+import Toolbar from './toolbar'
+
 import styles from './index.module.scss'
 
 export class Todos extends Component {
@@ -34,67 +22,29 @@ export class Todos extends Component {
 
   handleStatusFilterChange = status => this.setState({ show: status })
 
-  formatDateFilter = () => {
-    const { date } = this.state
-    if (isToday(date)) return 'Today'
-    if (isTomorrow(date)) return 'Tomorrow'
-    if (isYesterday(date)) return 'Yesterday'
-    if (isThisWeek(date)) return format(date, 'dddd')
-    return format(date, `MMM Do${isThisYear(date) ? ', YYYY' : ''}`)
-  }
-
   render() {
-    const completed = this.props.todos.filter(t => t.done).length
-    const percentage = completed
-      ? parseFloat(completed / this.props.todos.length).toFixed(2)
-      : 0
-
-    const progress = (
-      <div className={styles.progress}>
-        <Spinner size={55} value={percentage} />
-        <span>{percentage * 100}% done</span>
-      </div>
-    )
+    const todos =
+      this.state.show === 'All'
+        ? this.props.todos
+        : this.props.todos.filter(todo =>
+            this.state.show === 'Done' ? todo.done : !todo.done
+          )
 
     return (
       <div className={styles.root}>
         <Header
           title={'My Todos'}
           subtitle={format(new Date(), 'MMM D, YYYY')}
-          action={progress}
+          action={<Progress todos={this.props.todos} />}
         />
-        <div
-          className={`${styles.toolbar} ${
-            this.state.scrolled ? styles.scrolled : ''
-          }`}>
-          <div className={styles.filter}>
-            <ButtonGroup minimal>
-              <Popover position={Position.BOTTOM_LEFT} minimal>
-                <AnchorButton rightIcon='caret-down' icon='calendar'>
-                  Tomorrow
-                </AnchorButton>
-              </Popover>
-              <Popover
-                content={
-                  <StatusSelector onSelect={this.handleStatusFilterChange} />
-                }
-                position={Position.BOTTOM_LEFT}
-                minimal>
-                <AnchorButton rightIcon='caret-down' icon='eye-open'>
-                  {this.state.show}
-                </AnchorButton>
-              </Popover>
-            </ButtonGroup>
-          </div>
-          <div className={styles.actions}>
-            <ButtonGroup minimal>
-              <Button icon='tick' />
-              <Button icon='trash' />
-            </ButtonGroup>
-          </div>
-        </div>
+        <Toolbar
+          todos={this.props.todos}
+          show={this.state.show}
+          scrolled={this.state.scrolled}
+          onStatusFilterChange={this.handleStatusFilterChange}
+        />
         <div className={styles.list} onScroll={this.handleScroll}>
-          {this.props.todos.map(todo => (
+          {todos.map(todo => (
             <Todo key={todo.id} todo={todo} />
           ))}
         </div>
