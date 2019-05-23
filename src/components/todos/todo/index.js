@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 import { format } from 'date-fns'
 import { Button } from '@blueprintjs/core'
-import TodoIcon from '../../todoIcon'
+import Avatar from 'components/shared/Avatar'
 
 const Todo = ({ todo, onComplete }) => {
   const handleComplete = () => {
@@ -12,7 +12,7 @@ const Todo = ({ todo, onComplete }) => {
 
   return (
     <div className={`${styles.root} ${todo.done ? styles.done : ''}`}>
-      <TodoIcon icon={todo.icon} disabled={todo.done} />
+      <Avatar icon={todo.icon} disabled={todo.done} />
       <div className={styles.content}>
         <div className={styles.title}>{todo.description}</div>
         <div className={styles.subTitle}>{todo.location}</div>

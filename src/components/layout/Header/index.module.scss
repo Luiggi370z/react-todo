@@ -12,7 +12,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-image: url('../../assets/left.png');
+    background-image: url('../../../assets/left.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     // filter: blur(1px);
@@ -27,7 +27,7 @@
 :global(.right-active) {
   .root {
     &:before {
-      background-image: url('../../assets/right.png');
+      background-image: url('../../../assets/right.png');
     }
   }
 }

@@ -6,11 +6,12 @@ import {
   ButtonGroup,
   AnchorButton,
   Popover,
+  Tooltip,
   Position
 } from '@blueprintjs/core'
 
-import StatusSelector from './statusSelector'
-import DateSelector from './dateSelector'
+import StatusSelector from './StatusSelector'
+import DateSelector from './DateSelector'
 
 const Toolbar = props => {
   return (
@@ -38,8 +39,12 @@ const Toolbar = props => {
       </div>
       <div className={styles.actions}>
         <ButtonGroup minimal>
-          <Button icon='tick' />
-          <Button icon='trash' />
+          <Tooltip content='Complete All' position={Position.BOTTOM}>
+            <Button icon='tick' />
+          </Tooltip>
+          <Tooltip content='Remove All' position={Position.BOTTOM}>
+            <Button icon='trash' />
+          </Tooltip>
         </ButtonGroup>
       </div>
     </div>

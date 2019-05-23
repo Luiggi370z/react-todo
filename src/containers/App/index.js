@@ -1,13 +1,12 @@
 import React from 'react'
 import { addDays } from 'date-fns'
 import './App.scss'
-import { Colors } from '@blueprintjs/core'
-import Container from './components/container'
-import Overlay from './components/overlay'
-import TodoAdd from './components/addTodo'
-import Todos from './components/todos'
-import NewTodo from './components/newTodo'
-import Summary from './components/summary'
+import Container from 'components/layout/Home'
+import Overlay from 'components/layout/Overlay'
+import TodoAdd from 'components/TodoAdd'
+import Todos from 'components/Todos'
+import TodoForm from 'components/TodoForm'
+import Summary from 'components/Summary'
 
 class App extends React.Component {
   state = {
@@ -92,11 +91,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className='root' style={{ background: Colors.LIGHT_GRAY4 }}>
+      <div className='root'>
         <Container
           activeRight={this.state.addNew}
           left={<Todos todos={this.state.todos} />}
-          right={<NewTodo />}
+          right={<TodoForm />}
           overlay={
             <Overlay
               left={<Summary todos={this.state.todos} />}

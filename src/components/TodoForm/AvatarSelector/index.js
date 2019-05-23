@@ -26,7 +26,7 @@ const availableIcons = [
   'dollar'
 ]
 
-const IconSelector = ({ field, onSelect }) => {
+const AvatarSelector = ({ field, onSelect }) => {
   const handleChange = e => {
     onSelect({
       target: {
@@ -53,9 +53,9 @@ const IconSelector = ({ field, onSelect }) => {
   )
 }
 
-IconSelector.propTypes = {
+AvatarSelector.propTypes = {
   field: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired
 }
 
-export default IconSelector
+export default AvatarSelector

@@ -4,14 +4,14 @@ import styles from './index.module.scss'
 import { Popover, Button, Switch, Position, Icon } from '@blueprintjs/core'
 import { DateInput, TimePrecision } from '@blueprintjs/datetime'
 import { format } from 'date-fns'
-import Header from '../header'
-import TodoIcon from '../todoIcon'
-import IconSelector from '../iconSelector'
-import CategorySelector from './categorySelector'
-import InputGroup from '../inputGroup'
-import Categories from '../../mocks/categories'
+import Header from 'components/layout/Header'
+import Avatar from 'components/shared/Avatar'
+import InputGroup from 'components/shared/InputGroup'
+import Categories from 'mocks/categories'
+import AvatarSelector from './AvatarSelector'
+import CategorySelector from './CategorySelector'
 
-class NewTodo extends Component {
+class TodoForm extends Component {
   // static propTypes = {
   //   prop: PropTypes
   // }
@@ -52,10 +52,10 @@ class NewTodo extends Component {
           <Popover
             canEscapeKeyClose
             content={
-              <IconSelector onSelect={this.handleChange} field={'icon'} />
+              <AvatarSelector onSelect={this.handleChange} field={'icon'} />
             }
             position={Position.BOTTOM}>
-            <TodoIcon
+            <Avatar
               large
               icon={icon || 'plus'}
               disabled={!icon}
@@ -154,4 +154,4 @@ class NewTodo extends Component {
   }
 }
 
-export default NewTodo
+export default TodoForm

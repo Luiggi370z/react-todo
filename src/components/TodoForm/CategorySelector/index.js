@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Menu, MenuItem, Icon } from '@blueprintjs/core'
-import Categories from '../../mocks/categories'
-import styles from './categorySelector.module.scss'
+import Categories from 'mocks/categories'
+import styles from './index.module.scss'
 
 const CategorySelector = ({ field, onSelect }) => {
   const handleChange = e => {

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 import { Button, Icon } from '@blueprintjs/core'
-import Categories from '../../mocks/categories'
+import Categories from 'mocks/categories'
 
 const Summary = ({ todos }) => {
   const countByCategory = categoryId => {

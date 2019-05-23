@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { format } from 'date-fns'
 
-import Header from '../header'
-import Todo from './todo'
-import Progress from '../progress'
-import Toolbar from './toolbar'
+import Header from 'components/layout/Header'
+import Todo from './Todo'
+import Progress from './Progress'
+import Toolbar from './Toolbar'
 
 import styles from './index.module.scss'
 
