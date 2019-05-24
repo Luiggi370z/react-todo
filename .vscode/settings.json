@@ -7,5 +7,6 @@
     "statusBar.background": "#61dafb",
     "statusBarItem.hoverBackground": "#2fcefa",
     "statusBar.foreground": "#15202b"
-  }
+  },
+  "material-icon-theme.activeIconPack": "react_redux"
 }

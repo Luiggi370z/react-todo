@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 import { format } from 'date-fns'
 import { Button } from '@blueprintjs/core'
-import Avatar from 'components/shared/Avatar'
+import Avatar from 'components/ui/Avatar'
 
 const Todo = ({ todo, onComplete }) => {
   const handleComplete = () => {
@@ -30,6 +30,9 @@ const Todo = ({ todo, onComplete }) => {
   )
 }
 
-Todo.propTypes = {}
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired,
+  onComplete: PropTypes.func.isRequired
+}
 
 export default Todo

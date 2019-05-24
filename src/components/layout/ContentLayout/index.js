@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './index.module.scss'
 import { Classes } from '@blueprintjs/core'
 
-const Container = props => {
+const ContentLayout = props => {
   const rootClasses = [
     styles.root,
     Classes.ELEVATION_2,
@@ -18,4 +18,4 @@ const Container = props => {
   )
 }
 
-export default Container
+export default ContentLayout

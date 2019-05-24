@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import { format } from 'date-fns'
 
 import Header from 'components/layout/Header'
-import Todo from './Todo'
-import Progress from './Progress'
-import Toolbar from './Toolbar'
+import { Progress, Toolbar, TodoList } from 'components/Todo'
 
 import styles from './index.module.scss'
 
@@ -43,11 +41,7 @@ export class Todos extends Component {
           scrolled={this.state.scrolled}
           onStatusFilterChange={this.handleStatusFilterChange}
         />
-        <div className={styles.list} onScroll={this.handleScroll}>
-          {todos.map(todo => (
-            <Todo key={todo.id} todo={todo} />
-          ))}
-        </div>
+        <TodoList todos={todos} onScroll={this.handleScroll} />
       </div>
     )
   }

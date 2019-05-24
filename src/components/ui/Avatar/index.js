@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './index.module.scss'
 import { Icon } from '@blueprintjs/core'
+
 const Avatar = ({ icon, large, disabled, badge }) => {
   return (
     <div

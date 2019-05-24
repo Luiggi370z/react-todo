@@ -60,6 +60,8 @@ const DateSelector = props => {
   )
 }
 
-DateSelector.propTypes = {}
+DateSelector.propTypes = {
+  todos: PropTypes.array.isRequired
+}
 
 export default memo(DateSelector)
