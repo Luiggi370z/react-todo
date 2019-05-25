@@ -8,5 +8,8 @@
     "statusBarItem.hoverBackground": "#2fcefa",
     "statusBar.foreground": "#15202b"
   },
-  "material-icon-theme.activeIconPack": "react_redux"
+  "material-icon-theme.activeIconPack": "react_redux",
+  "material-icon-theme.folders.associations": {
+    "store": "redux-store"
+  }
 }

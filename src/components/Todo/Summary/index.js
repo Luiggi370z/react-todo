@@ -4,7 +4,7 @@ import styles from './index.module.scss'
 import { Button, Icon } from '@blueprintjs/core'
 import Categories from 'mocks/categories'
 
-const Summary = ({ todos }) => {
+const Summary = ({ todos, toggleView }) => {
   const countByCategory = categoryId => {
     return todos.filter(todo => todo.category === categoryId).length
   }
@@ -29,7 +29,7 @@ const Summary = ({ todos }) => {
           </div>
         ))}
       </div>
-      <Button large minimal className='panel-button'>
+      <Button large minimal className='panel-button' onClick={toggleView}>
         VIEW TODOS
       </Button>
     </React.Fragment>

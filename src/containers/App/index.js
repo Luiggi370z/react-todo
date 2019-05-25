@@ -1,8 +1,7 @@
 import React from 'react'
 import { addDays } from 'date-fns'
 import './App.scss'
-import { ContentLayout, Overlay } from 'components/layout'
-import { TodoAdd, TodoForm, Summary } from 'components/Todo'
+
 import Todos from 'containers/Todo'
 
 class App extends React.Component {
@@ -84,23 +83,10 @@ class App extends React.Component {
     addNew: false
   }
 
-  handleClick = () => this.setState({ addNew: !this.state.addNew })
-
   render() {
     return (
       <div className='root'>
-        <ContentLayout
-          activeRight={this.state.addNew}
-          left={<Todos todos={this.state.todos} />}
-          right={<TodoForm />}
-          overlay={
-            <Overlay
-              left={<Summary todos={this.state.todos} />}
-              right={<TodoAdd />}
-            />
-          }
-        />
-        <button onClick={this.handleClick}>Toggle</button>
+        <Todos />
       </div>
     )
   }

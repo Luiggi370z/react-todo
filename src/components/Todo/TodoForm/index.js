@@ -4,7 +4,6 @@ import styles from './index.module.scss'
 import { Popover, Button, Switch, Position, Icon } from '@blueprintjs/core'
 import { DateInput, TimePrecision } from '@blueprintjs/datetime'
 import { format } from 'date-fns'
-import { Header } from 'components/layout'
 import { Avatar, InputGroup } from 'components/ui'
 import Categories from 'mocks/categories'
 import AvatarSelector from './AvatarSelector'
@@ -45,8 +44,7 @@ class TodoForm extends Component {
     const canSave = description && location && date && icon
 
     return (
-      <div>
-        <Header title={'New ToDo'} subtitle={'5 tasks for today'} />
+      <form className={styles.form}>
         <div className={styles.todoIcon}>
           <Popover
             canEscapeKeyClose
@@ -66,89 +64,84 @@ class TodoForm extends Component {
             />
           </Popover>
         </div>
-        <form className={styles.form}>
-          <div className={styles.category}>
-            <Popover
-              minimal
-              canEscapeKeyClose
-              content={
-                <CategorySelector
-                  onSelect={this.handleChange}
-                  field='category'
-                />
-              }
-              position={Position.BOTTOM_LEFT}>
-              <InputGroup
-                className={styles[category]}
-                value={Categories[category]}
-                canClear={false}
-                readOnly>
-                <Icon icon='symbol-circle' />
-              </InputGroup>
-            </Popover>
-          </div>
-          <div>
-            <InputGroup
-              name='description'
-              placeholder='What I have to do? *'
-              value={description}
-              autoComplete='off'
-              onChange={this.handleChange}
-              onClear={this.handleClear}
-            />
-          </div>
-          <div>
-            <InputGroup
-              name='location'
-              placeholder='Where? *'
-              value={location}
-              autoComplete='off'
-              onChange={this.handleChange}
-              onClear={this.handleClear}
-            />
-          </div>
-          <div className={styles.date}>
-            <div>
-              <DateInput
-                closeOnSelection={this.state.isAllDay}
-                placeholder='When? *'
-                minDate={this.state.minDate}
-                inputProps={{ readOnly: true }}
-                formatDate={this.formatDate}
-                parseDate={str => new Date(str)}
-                timePrecision={
-                  this.state.isAllDay ? undefined : TimePrecision.MINUTE
-                }
-                timePickerProps={
-                  this.state.isAllDay
-                    ? undefined
-                    : { minTime: this.state.minTime }
-                }
-                popoverProps={{ position: Position.TOP }}
-                onChange={this.handleDateChange}
-                value={date}
-              />
-            </div>
-            <div className={styles.allDay}>
-              <Switch
-                label='All day'
-                checked={this.state.isAllDay}
-                name='isAllDay'
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <label className={styles.hint}>* Required fields</label>
-          <Button
-            large
+        <div className={styles.category}>
+          <Popover
             minimal
-            fill
-            className={styles.saveButton}
-            disabled={!canSave}>
-            ADD TODO
-          </Button>
-        </form>
-      </div>
+            canEscapeKeyClose
+            content={
+              <CategorySelector onSelect={this.handleChange} field='category' />
+            }
+            position={Position.BOTTOM_LEFT}>
+            <InputGroup
+              className={styles[category]}
+              value={Categories[category]}
+              canClear={false}
+              readOnly>
+              <Icon icon='symbol-circle' />
+            </InputGroup>
+          </Popover>
+        </div>
+        <div>
+          <InputGroup
+            name='description'
+            placeholder='What I have to do? *'
+            value={description}
+            autoComplete='off'
+            onChange={this.handleChange}
+            onClear={this.handleClear}
+          />
+        </div>
+        <div>
+          <InputGroup
+            name='location'
+            placeholder='Where? *'
+            value={location}
+            autoComplete='off'
+            onChange={this.handleChange}
+            onClear={this.handleClear}
+          />
+        </div>
+        <div className={styles.date}>
+          <div>
+            <DateInput
+              closeOnSelection={this.state.isAllDay}
+              placeholder='When? *'
+              minDate={this.state.minDate}
+              inputProps={{ readOnly: true }}
+              formatDate={this.formatDate}
+              parseDate={str => new Date(str)}
+              timePrecision={
+                this.state.isAllDay ? undefined : TimePrecision.MINUTE
+              }
+              timePickerProps={
+                this.state.isAllDay
+                  ? undefined
+                  : { minTime: this.state.minTime }
+              }
+              popoverProps={{ position: Position.TOP }}
+              onChange={this.handleDateChange}
+              value={date}
+            />
+          </div>
+          <div className={styles.allDay}>
+            <Switch
+              label='All day'
+              checked={this.state.isAllDay}
+              name='isAllDay'
+              onChange={this.handleChange}
+            />
+          </div>
+        </div>
+        <label className={styles.hint}>* Required fields</label>
+        <Button
+          large
+          minimal
+          fill
+          className={styles.saveButton}
+          disabled={!canSave}>
+          ADD TODO
+        </Button>
+      </form>
     )
   }
 }
