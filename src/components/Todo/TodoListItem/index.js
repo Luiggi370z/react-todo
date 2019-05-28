@@ -5,9 +5,13 @@ import { format } from 'date-fns'
 import { Button } from '@blueprintjs/core'
 import Avatar from 'components/ui/Avatar'
 
-const Todo = ({ todo, onComplete }) => {
-  const handleComplete = () => {
-    onComplete(todo.id)
+const Todo = ({ todo, onToggle, onDelete }) => {
+  const handleToggle = () => {
+    onToggle(todo.id)
+  }
+
+  const handleDelete = () => {
+    onDelete(todo.id)
   }
 
   return (
@@ -21,9 +25,10 @@ const Todo = ({ todo, onComplete }) => {
         <span className={styles.date}>{format(todo.date, 'ha')}</span>
         <div className={styles.actions}>
           {!todo.done && (
-            <Button icon={'tick'} minimal onClick={handleComplete} />
+            <Button icon={'tick'} minimal onClick={handleToggle} />
           )}
-          <Button icon={'trash'} minimal />
+          {todo.done && <Button icon={'undo'} minimal onClick={handleToggle} />}
+          <Button icon={'trash'} minimal onClick={handleDelete} />
         </div>
       </div>
     </div>
@@ -32,7 +37,8 @@ const Todo = ({ todo, onComplete }) => {
 
 Todo.propTypes = {
   todo: PropTypes.object.isRequired,
-  onComplete: PropTypes.func.isRequired
+  onToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired
 }
 
 export default Todo

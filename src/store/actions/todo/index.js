@@ -1,21 +1,22 @@
 import * as Types from './action-types'
 
-export const addTodo = payload => ({
+export const addTodo = newTodo => ({
   type: Types.ADD_TODO,
   payload: {
-    ...payload,
+    ...newTodo,
+    done: false,
     id: `${Date.now()}`
   }
 })
 
-export const deleteTodo = payload => ({
+export const deleteTodo = id => ({
   type: Types.DELETE_TODO,
-  payload
+  payload: { id }
 })
 
-export const toggleStatusTodo = payload => ({
+export const toggleTodoStatus = id => ({
   type: Types.TOGGLE_TODO_STATUS,
-  payload
+  payload: { id }
 })
 
 export const completeAll = () => ({
@@ -37,7 +38,14 @@ export const updateDateFilter = payload => ({
   payload
 })
 
-export const updateField = payload => ({
+export const updateField = ({ field, value }) => ({
   type: Types.UPDATE_NEW_TODO_FIELD,
-  payload
+  payload: {
+    field,
+    value
+  }
+})
+
+export const toggleAllDayFlag = () => ({
+  type: Types.TOGGLE_ALL_DAY_FLAG
 })

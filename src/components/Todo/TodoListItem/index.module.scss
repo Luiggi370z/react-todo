@@ -49,12 +49,14 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.6;
+  transition: all 900ms ease;
 }
 
 .subTitle {
   @extend .truncated;
   font-style: 0.85rem;
   color: darken($outline-color, 30%);
+  transition: all 900ms ease;
 }
 
 .details {

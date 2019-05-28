@@ -2,7 +2,11 @@ import * as Actions from 'store/actions/todo/action-types'
 import { isSameDay } from 'date-fns'
 
 const newTodo = {
-  category: 1
+  category: '1',
+  description: '',
+  location: '',
+  date: null,
+  icon: ''
 }
 
 const updateFilter = filterName => (state, payload) => ({
@@ -18,6 +22,7 @@ const updateFilter = filterName => (state, payload) => ({
 
 const initialState = {
   newTodo,
+  isAllDay: false,
   todos: [],
   filters: {
     date: {
@@ -34,12 +39,12 @@ const initialState = {
 const reducer = {
   [Actions.ADD_TODO]: (state, payload) => ({
     ...state,
-    todos: [...state.todos, payload.todo],
+    todos: [...state.todos, { ...payload }],
     newTodo
   }),
   [Actions.DELETE_TODO]: (state, payload) => ({
     ...state,
-    todos: state.todos.filter(todo => todo.id === payload.id)
+    todos: state.todos.filter(todo => todo.id !== payload.id)
   }),
   [Actions.TOGGLE_TODO_STATUS]: (state, payload) => ({
     ...state,
@@ -67,6 +72,10 @@ const reducer = {
       ...state.newTodo,
       [payload.field]: payload.value
     }
+  }),
+  [Actions.TOGGLE_ALL_DAY_FLAG]: state => ({
+    ...state,
+    isAllDay: !state.isAllDay
   })
 }
 

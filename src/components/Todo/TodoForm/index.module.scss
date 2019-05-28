@@ -26,7 +26,7 @@
 
 .form {
   padding: 0.5rem 1.5rem 1rem;
-  > div &:not(.todoIcon) {
+  > div:not(:first-child) {
     margin: 8px 0;
     width: 100%;
   }

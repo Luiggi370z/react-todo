@@ -39,7 +39,7 @@ InputGroup.defaultProps = {
 
 InputGroup.propTypes = {
   name: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   onChange: PropTypes.func,
   onClear: PropTypes.func,
   canClear: PropTypes.bool

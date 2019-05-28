@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
+import { isToday, isPast } from 'date-fns'
 
-export const todosSelector = createSelector(
+export const todosListSelector = createSelector(
   state => state.todos.todos,
   state => state.todos.filters.date,
   state => state.todos.filters.status,
@@ -11,9 +12,20 @@ export const todosSelector = createSelector(
   })
 )
 
+export const todosSummarySelector = createSelector(
+  state => state.todos.todos.filter(todo => !isPast(todo.date) && !todo.done),
+  pendingTodos => ({ pendingTodos })
+)
+
 export const todoNewSelector = createSelector(
   state => state.todos.newTodo,
-  newTodo => ({ newTodo })
+  state => state.todos.todos.filter(todo => isToday(todo.date)).length,
+  state => state.todos.isAllDay,
+  (newTodo, totalTodosToday, isAllDay) => ({
+    newTodo,
+    totalTodosToday,
+    isAllDay
+  })
 )
 
 export const rootSelector = createSelector(

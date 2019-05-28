@@ -1,17 +1,18 @@
 @import 'styles/colors';
 
 .progress {
+  width: 105px;
   display: flex;
   flex-flow: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding: 0 1rem;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
-  > span {
+  span {
     color: $outline-color;
-    font-size: 0.85rem;
-    margin-top: 12px;
+    font-size: 0.75rem;
+    text-align: center;
   }
   svg {
     :global(.bp3-spinner-track) {
@@ -21,4 +22,17 @@
       stroke: rgba($primary-color, 0.8);
     }
   }
+}
+
+.spinnerContainer {
+  position: relative;
+  margin-top: 10px;
+}
+
+.value {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }

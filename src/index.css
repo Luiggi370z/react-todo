@@ -2,12 +2,13 @@
 @import '~@blueprintjs/core/lib/css/blueprint.css';
 @import '~@blueprintjs/icons/lib/css/blueprint-icons.css';
 @import '~@blueprintjs/datetime/lib/css/blueprint-datetime.css';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +23,7 @@ code {
 }
 
 html {
-  font-size: 16px;
+  font-size: 15px;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f6f5f7;
 }
 
 /* Overwrite some styles from Blueprint */

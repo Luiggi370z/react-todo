@@ -9,141 +9,125 @@ import Categories from 'mocks/categories'
 import AvatarSelector from './AvatarSelector'
 import CategorySelector from './CategorySelector'
 
-class TodoForm extends Component {
-  // static propTypes = {
-  //   prop: PropTypes
-  // }
+const TodoForm = ({
+  newTodo,
+  isAllDay,
+  addTodo,
+  updateField,
+  toggleAllDayFlag
+}) => {
+  const formatDate = date =>
+    format(date, `MM/DD/YYYY${isAllDay ? '' : ' hh:mm A'}`)
 
-  state = {
-    category: 1,
-    description: '',
-    location: '',
-    date: null,
-    isAllDay: false,
-    icon: '',
-    minTime: new Date(),
-    minDate: new Date()
-  }
-
-  formatDate = date =>
-    format(date, `MM/DD/YYYY${this.state.isAllDay ? '' : ' hh:mm A'}`)
-
-  handleChange = ({ target }) => {
+  const handleChange = ({ target }) => {
     const value = target.type === 'checkbox' ? target.checked : target.value
-    this.setState({ [target.name]: value })
+    updateField({ field: target.name, value })
   }
 
-  handleClear = field => this.setState({ [field]: '' })
+  const handleClear = field => updateField({ field, value: '' })
 
-  handleDateChange = (date, isUserChange) => {
-    if (isUserChange) this.setState({ date: date })
+  const handleDateChange = (date, isUserChange) => {
+    if (isUserChange) updateField({ field: 'date', value: date })
   }
 
-  render() {
-    const { description, location, date, icon, category } = this.state
-    const canSave = description && location && date && icon
+  const handleAddTodo = () => addTodo(newTodo)
 
-    return (
-      <form className={styles.form}>
-        <div className={styles.todoIcon}>
-          <Popover
-            canEscapeKeyClose
-            content={
-              <AvatarSelector onSelect={this.handleChange} field={'icon'} />
+  const { description, location, date, icon, category } = newTodo
+  const canSave = description && location && date && icon
+  const timePrecision = isAllDay ? undefined : TimePrecision.MINUTE
+  const timePickerProps = isAllDay ? undefined : { minTime: new Date() }
+
+  return (
+    <form className={styles.form}>
+      <div className={styles.todoIcon}>
+        <Popover
+          canEscapeKeyClose
+          content={<AvatarSelector onSelect={handleChange} field='icon' />}
+          position={Position.BOTTOM}>
+          <Avatar
+            large
+            icon={icon || 'plus'}
+            disabled={!icon}
+            badge={
+              icon && <Icon icon='edit' size={'12'} className={styles.badge} />
             }
-            position={Position.BOTTOM}>
-            <Avatar
-              large
-              icon={icon || 'plus'}
-              disabled={!icon}
-              badge={
-                icon && (
-                  <Icon icon='edit' size={'12'} className={styles.badge} />
-                )
-              }
-            />
-          </Popover>
-        </div>
-        <div className={styles.category}>
-          <Popover
-            minimal
-            canEscapeKeyClose
-            content={
-              <CategorySelector onSelect={this.handleChange} field='category' />
-            }
-            position={Position.BOTTOM_LEFT}>
-            <InputGroup
-              className={styles[category]}
-              value={Categories[category]}
-              canClear={false}
-              readOnly>
-              <Icon icon='symbol-circle' />
-            </InputGroup>
-          </Popover>
-        </div>
-        <div>
-          <InputGroup
-            name='description'
-            placeholder='What I have to do? *'
-            value={description}
-            autoComplete='off'
-            onChange={this.handleChange}
-            onClear={this.handleClear}
           />
-        </div>
-        <div>
-          <InputGroup
-            name='location'
-            placeholder='Where? *'
-            value={location}
-            autoComplete='off'
-            onChange={this.handleChange}
-            onClear={this.handleClear}
-          />
-        </div>
-        <div className={styles.date}>
-          <div>
-            <DateInput
-              closeOnSelection={this.state.isAllDay}
-              placeholder='When? *'
-              minDate={this.state.minDate}
-              inputProps={{ readOnly: true }}
-              formatDate={this.formatDate}
-              parseDate={str => new Date(str)}
-              timePrecision={
-                this.state.isAllDay ? undefined : TimePrecision.MINUTE
-              }
-              timePickerProps={
-                this.state.isAllDay
-                  ? undefined
-                  : { minTime: this.state.minTime }
-              }
-              popoverProps={{ position: Position.TOP }}
-              onChange={this.handleDateChange}
-              value={date}
-            />
-          </div>
-          <div className={styles.allDay}>
-            <Switch
-              label='All day'
-              checked={this.state.isAllDay}
-              name='isAllDay'
-              onChange={this.handleChange}
-            />
-          </div>
-        </div>
-        <label className={styles.hint}>* Required fields</label>
-        <Button
-          large
+        </Popover>
+      </div>
+      <div className={styles.category}>
+        <Popover
           minimal
-          fill
-          className={styles.saveButton}
-          disabled={!canSave}>
-          ADD TODO
-        </Button>
-      </form>
-    )
-  }
+          canEscapeKeyClose
+          content={
+            <CategorySelector onSelect={handleChange} field='category' />
+          }
+          position={Position.BOTTOM_LEFT}>
+          <InputGroup
+            className={styles[category]}
+            value={Categories[category]}
+            canClear={false}
+            readOnly>
+            <Icon icon='symbol-circle' />
+          </InputGroup>
+        </Popover>
+      </div>
+      <div>
+        <InputGroup
+          name='description'
+          placeholder='What I have to do? *'
+          value={description}
+          autoComplete='off'
+          onChange={handleChange}
+          onClear={handleClear}
+        />
+      </div>
+      <div>
+        <InputGroup
+          name='location'
+          placeholder='Where? *'
+          value={location}
+          autoComplete='off'
+          onChange={handleChange}
+          onClear={handleClear}
+        />
+      </div>
+      <div className={styles.date}>
+        <div>
+          <DateInput
+            closeOnSelection={isAllDay}
+            placeholder='When? *'
+            minDate={new Date()}
+            inputProps={{ readOnly: true }}
+            formatDate={formatDate}
+            parseDate={str => new Date(str)}
+            timePrecision={timePrecision}
+            timePickerProps={timePickerProps}
+            popoverProps={{ position: Position.TOP }}
+            onChange={handleDateChange}
+            value={date}
+          />
+        </div>
+        <div className={styles.allDay}>
+          <Switch
+            label='All day'
+            checked={isAllDay}
+            name='isAllDay'
+            onChange={toggleAllDayFlag}
+          />
+        </div>
+      </div>
+      <label className={styles.hint}>* Required fields</label>
+      <Button
+        large
+        minimal
+        fill
+        className={styles.saveButton}
+        disabled={!canSave}
+        onClick={handleAddTodo}>
+        ADD TODO
+      </Button>
+    </form>
+  )
 }
 
 export default TodoForm

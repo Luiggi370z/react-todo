@@ -5,10 +5,13 @@ import { TodoAdd, Summary } from 'components/Todo'
 import TodosAll from './All'
 import TodosNew from './New'
 
-import { rootSelector } from 'store/selectors'
+import { rootSelector, todosSummarySelector } from 'store/selectors'
 import { toggleView } from 'store/actions/root'
 
-const mapStateToProps = state => rootSelector(state)
+const mapStateToProps = state => ({
+  ...rootSelector(state),
+  ...todosSummarySelector(state)
+})
 
 const mapDispatchToProps = dispatch => ({
   changeView: () => dispatch(toggleView())
@@ -16,15 +19,17 @@ const mapDispatchToProps = dispatch => ({
 
 export class Todos extends Component {
   render() {
+    const { viewAll, pendingTodos, changeView } = this.props
+
     return (
       <ContentLayout
-        activeRight={!this.props.viewAll}
+        activeRight={!viewAll}
         left={<TodosAll />}
         right={<TodosNew />}
         overlay={
           <Overlay
-            left={<Summary todos={[]} toggleView={this.props.changeView} />}
-            right={<TodoAdd toggleView={this.props.changeView} />}
+            left={<Summary todos={pendingTodos} toggleView={changeView} />}
+            right={<TodoAdd toggleView={changeView} />}
           />
         }
       />
