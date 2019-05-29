@@ -3,12 +3,12 @@ import styles from './index.module.scss'
 
 const Header = props => {
   return (
-    <div className={styles.root}>
-      <div className={styles.title}>
+    <div className={styles.background}>
+      <div className={styles.container}>
         <h1>{props.title}</h1>
-        <span>{props.subtitle}</span>
+        {!props.children && <span>{props.subtitle}</span>}
+        {props.children}
       </div>
-      {props.action}
     </div>
   )
 }

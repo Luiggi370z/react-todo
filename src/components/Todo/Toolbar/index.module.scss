@@ -2,7 +2,7 @@
 
 .toolbar {
   display: flex;
-  padding: 0.6rem 1rem 0.5rem;
+  padding: 0.6rem 1.5rem 0.5rem;
   position: relative;
   &:after {
     content: '';
@@ -37,7 +37,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  > * {
-    margin: 0 3px;
+  button {
+    border-radius: 50%;
   }
 }

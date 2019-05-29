@@ -2,3 +2,9 @@
   max-height: 250px;
   overflow-y: auto;
 }
+
+.date {
+  * {
+    pointer-events: none;
+  }
+}

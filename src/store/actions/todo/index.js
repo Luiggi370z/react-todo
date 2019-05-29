@@ -28,14 +28,17 @@ export const deleteAll = payload => ({
   payload
 })
 
-export const updateStatusFilter = payload => ({
+export const updateStatusFilter = status => ({
   type: Types.UPDATE_TODO_STATUS_FILTER,
-  payload
+  payload: { status }
 })
 
-export const updateDateFilter = payload => ({
+export const updateDateFilter = ({ key, value }) => ({
   type: Types.UPDATE_TODO_DATE_FILTER,
-  payload
+  payload: {
+    key,
+    value
+  }
 })
 
 export const updateField = ({ field, value }) => ({

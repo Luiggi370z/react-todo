@@ -1,17 +1,16 @@
 @import 'styles/colors';
 
 .progress {
-  width: 105px;
   display: flex;
-  flex-flow: column;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  // padding: 0 1rem;
+  // background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
   span {
-    color: $outline-color;
-    font-size: 0.75rem;
+    color: #000;
+    padding: 0 10px;
+    font-size: 0.8rem;
     text-align: center;
   }
   svg {
@@ -22,17 +21,4 @@
       stroke: rgba($primary-color, 0.8);
     }
   }
-}
-
-.spinnerContainer {
-  position: relative;
-  margin-top: 10px;
-}
-
-.value {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
 }

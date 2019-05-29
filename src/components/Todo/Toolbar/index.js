@@ -1,48 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './index.module.scss'
-import {
-  Button,
-  ButtonGroup,
-  AnchorButton,
-  Popover,
-  Tooltip,
-  Position
-} from '@blueprintjs/core'
-
-import StatusSelector from './StatusSelector'
-import DateSelector from './DateSelector'
+import { Button, ButtonGroup, Tooltip, Position } from '@blueprintjs/core'
+import StatusFilter from './StatusFilter'
 
 const Toolbar = props => {
+  const { statusFilter, completeAll, deleteAll, onStatusFilterChange } = props
+
+  const handleStatusFilterChange = e => onStatusFilterChange(e.target.name)
+
   return (
     <div
       className={`${styles.toolbar} ${props.scrolled ? styles.scrolled : ''}`}>
       <div className={styles.filter}>
-        <ButtonGroup minimal>
-          <Popover
-            content={<DateSelector todos={props.todos} />}
-            position={Position.BOTTOM_LEFT}
-            minimal>
-            <AnchorButton rightIcon='caret-down' icon='calendar'>
-              Today
-            </AnchorButton>
-          </Popover>
-          <Popover
-            content={<StatusSelector onSelect={props.onStatusFilterChange} />}
-            position={Position.BOTTOM_LEFT}
-            minimal>
-            <AnchorButton rightIcon='caret-down' icon='eye-open'>
-              {props.show}
-            </AnchorButton>
-          </Popover>
-        </ButtonGroup>
+        <StatusFilter value={statusFilter} onSelect={onStatusFilterChange} />
       </div>
       <div className={styles.actions}>
         <ButtonGroup minimal>
-          <Tooltip content='Complete All' position={Position.BOTTOM}>
+          <Tooltip
+            content='Complete All'
+            position={Position.BOTTOM}
+            onClick={completeAll}>
             <Button icon='tick' />
           </Tooltip>
-          <Tooltip content='Remove All' position={Position.BOTTOM}>
+          <Tooltip
+            content='Remove All'
+            position={Position.BOTTOM}
+            onClick={deleteAll}>
             <Button icon='trash' />
           </Tooltip>
         </ButtonGroup>
@@ -51,6 +35,8 @@ const Toolbar = props => {
   )
 }
 
-Toolbar.propTypes = {}
+Toolbar.propTypes = {
+  statusFilter: PropTypes.string.isRequired
+}
 
 export default Toolbar

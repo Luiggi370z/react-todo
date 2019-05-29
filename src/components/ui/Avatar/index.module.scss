@@ -18,7 +18,7 @@
   svg {
     width: 22px;
     height: 22px;
-    color: $primary-color-dark1;
+    color: $primary-color;
     transition: color 1.4s ease;
   }
 }
@@ -46,7 +46,7 @@
   .foreground {
     stroke-dasharray: 377;
     stroke-dashoffset: 0;
-    stroke: $primary-color-dark1;
+    stroke: $primary-color;
     transform-origin: 50% 50%;
     transform: rotate(-90deg);
     transition: all 800ms ease;

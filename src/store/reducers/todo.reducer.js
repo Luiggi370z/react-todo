@@ -9,17 +9,6 @@ const newTodo = {
   icon: ''
 }
 
-const updateFilter = filterName => (state, payload) => ({
-  ...state,
-  filters: {
-    ...state.filters,
-    [filterName]: {
-      key: payload.key,
-      value: payload.value
-    }
-  }
-})
-
 const initialState = {
   newTodo,
   isAllDay: false,
@@ -29,10 +18,7 @@ const initialState = {
       key: 'Today',
       value: new Date()
     },
-    status: {
-      key: 'All',
-      value: null
-    }
+    status: 'All'
   }
 }
 
@@ -64,8 +50,23 @@ const reducer = {
     ...state,
     todos: state.todos.filter(todo => isSameDay(todo.date, payload.date))
   }),
-  [Actions.UPDATE_TODO_DATE_FILTER]: updateFilter('date'),
-  [Actions.UPDATE_TODO_STATUS_FILTER]: updateFilter('status'),
+  [Actions.UPDATE_TODO_DATE_FILTER]: (state, payload) => ({
+    ...state,
+    filters: {
+      ...state.filters,
+      date: {
+        key: payload.key,
+        value: payload.value
+      }
+    }
+  }),
+  [Actions.UPDATE_TODO_STATUS_FILTER]: (state, payload) => ({
+    ...state,
+    filters: {
+      ...state.filters,
+      status: payload.status
+    }
+  }),
   [Actions.UPDATE_NEW_TODO_FIELD]: (state, payload) => ({
     ...state,
     newTodo: {

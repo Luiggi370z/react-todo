@@ -28,9 +28,16 @@ const groupByDate = (list, filterBy) =>
     return r
   }, {})
 
-const getFilters = obj =>
+const getFilters = (obj, onSelect) =>
   Object.keys(obj).map(key => (
-    <MenuItem key={key} text={key} label={obj[key].length} />
+    <MenuItem
+      key={key}
+      text={key}
+      label={obj[key].length}
+      name={key}
+      className={styles.date}
+      onClick={onSelect}
+    />
   ))
 
 const getStats = list => ({
@@ -46,13 +53,23 @@ const getStats = list => ({
 
 const DateSelector = props => {
   const { totalToday, thisWeek, upcoming } = getStats(props.todos)
+  const { onSelect } = props
+
+  const handleTodayFilter = () => onSelect({ key: 'Today', value: new Date() })
+  const handleAnyOtherFilter = e => {
+    const [firstTodo] = thisWeek[e.target.name] || upcoming[e.target.name]
+    onSelect({
+      key: e.target.name,
+      value: firstTodo.date
+    })
+  }
 
   return (
     <Menu className={styles.root}>
-      <MenuItem text='Today' label={totalToday} />
-      {getFilters(thisWeek)}
+      <MenuItem text='Today' label={totalToday} onClick={handleTodayFilter} />
+      {getFilters(thisWeek, handleAnyOtherFilter)}
       <MenuDivider title='Upcoming' />
-      {getFilters(upcoming)}
+      {getFilters(upcoming, handleAnyOtherFilter)}
       {!Object.entries(upcoming).length && (
         <MenuItem text='Nothing yet!' disabled />
       )}

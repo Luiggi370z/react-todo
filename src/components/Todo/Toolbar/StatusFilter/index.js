@@ -1,29 +1,32 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Menu, MenuItem } from '@blueprintjs/core'
+import { ButtonGroup, Button } from '@blueprintjs/core'
 import styles from './index.module.scss'
 const statuses = ['All', 'Done', 'Pending']
 
-const StatusSelector = ({ onSelect }) => {
+const StatusFilter = ({ value, onSelect }) => {
   const handleChange = e => onSelect(e.target.name)
 
   return (
-    <Menu>
+    <ButtonGroup minimal>
       {statuses.map(status => (
-        <MenuItem
+        <Button
           key={status}
           text={status}
           name={status}
-          className={styles.status}
+          className={`${styles.button} ${
+            value === status ? styles.active : ''
+          }`}
           onClick={handleChange}
         />
       ))}
-    </Menu>
+    </ButtonGroup>
   )
 }
 
-StatusSelector.propTypes = {
+StatusFilter.propTypes = {
+  value: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired
 }
 
-export default StatusSelector
+export default StatusFilter

@@ -5,7 +5,7 @@
 .todoIcon {
   width: 100%;
   text-align: center;
-  padding: 1rem 0 0.5rem;
+  padding: 0.1rem 0 0.5rem;
   display: flex;
   justify-content: center;
   span {
@@ -25,7 +25,7 @@
 }
 
 .form {
-  padding: 0.5rem 1.5rem 1rem;
+  padding: 0.5rem 3.5rem 1rem;
   > div:not(:first-child) {
     margin: 8px 0;
     width: 100%;
@@ -72,7 +72,7 @@
   }
 
   :global(.bp3-control.bp3-switch input:checked ~ .bp3-control-indicator) {
-    background: $primary-color-dark1;
+    background: $primary-color;
   }
 }
 
@@ -88,13 +88,15 @@
 @include categories-colors;
 
 .saveButton:not([disabled]) {
-  color: $primary-color-dark1 !important;
+  color: #fff !important;
+  border-radius: 4px;
+  background-color: $primary-color !important;
   font-weight: 500;
   &:hover {
-    background: rgba($primary-color-dark1, 0.1) !important;
+    background: rgba($primary-color, 0.9) !important;
   }
   &:active {
-    background: rgba($primary-color-dark1, 0.15) !important;
+    background: rgba($primary-color, 0.95) !important;
   }
 }
 
@@ -105,7 +107,7 @@
 }
 
 .badge {
-  background: #b5b5b5;
+  background: #5c7080;
   color: #fff;
   position: relative;
   border-radius: inherit;
