@@ -19,13 +19,14 @@ export const toggleTodoStatus = id => ({
   payload: { id }
 })
 
-export const completeAll = () => ({
-  type: Types.COMPLETE_ALL_TODOS
+export const completeAll = date => ({
+  type: Types.COMPLETE_ALL_TODOS,
+  payload: { date }
 })
 
-export const deleteAll = payload => ({
+export const deleteAll = date => ({
   type: Types.DELETE_ALL_TODOS,
-  payload
+  payload: { date }
 })
 
 export const updateStatusFilter = status => ({
@@ -47,8 +48,4 @@ export const updateField = ({ field, value }) => ({
     field,
     value
   }
-})
-
-export const toggleAllDayFlag = () => ({
-  type: Types.TOGGLE_ALL_DAY_FLAG
 })

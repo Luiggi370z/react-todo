@@ -5,7 +5,7 @@
 .todoIcon {
   width: 100%;
   text-align: center;
-  padding: 0.1rem 0 0.5rem;
+  padding-bottom: 1rem;
   display: flex;
   justify-content: center;
   span {
@@ -25,7 +25,7 @@
 }
 
 .form {
-  padding: 0.5rem 3.5rem 1rem;
+  padding: 0 3.5rem 1rem;
   > div:not(:first-child) {
     margin: 8px 0;
     width: 100%;

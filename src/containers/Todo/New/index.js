@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { todoNewSelector } from 'store/selectors'
-import { addTodo, updateField, toggleAllDayFlag } from 'store/actions/todo'
+import { addTodo, updateField } from 'store/actions/todo'
 import { Header } from 'components/layout'
 import { TodoForm } from 'components/Todo'
 
@@ -11,8 +11,7 @@ const mapStateToProps = state => todoNewSelector(state)
 
 const mapDispatchToProps = dispatch => ({
   addTodo: newTodo => dispatch(addTodo(newTodo)),
-  updateField: payload => dispatch(updateField(payload)),
-  toggleAllDayFlag: () => dispatch(toggleAllDayFlag())
+  updateField: payload => dispatch(updateField(payload))
 })
 
 class TodoNew extends Component {
@@ -22,21 +21,12 @@ class TodoNew extends Component {
   }
 
   render() {
-    const {
-      totalTodosToday,
-      newTodo,
-      isAllDay,
-      addTodo,
-      updateField,
-      toggleAllDayFlag
-    } = this.props
+    const { totalTodosToday, newTodo, addTodo, updateField } = this.props
 
     const todoFormProps = {
       newTodo,
-      isAllDay,
       addTodo,
-      updateField,
-      toggleAllDayFlag
+      updateField
     }
 
     const subtitle = `${totalTodosToday} task${
@@ -44,10 +34,10 @@ class TodoNew extends Component {
     } for today`
 
     return (
-      <div>
+      <Fragment>
         <Header title={'New ToDo'} subtitle={subtitle} />
         <TodoForm {...todoFormProps} />
-      </div>
+      </Fragment>
     )
   }
 }

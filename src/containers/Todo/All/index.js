@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { format } from 'date-fns'
 import { todosListSelector } from 'store/selectors'
 import {
   completeAll,
@@ -19,8 +18,8 @@ import styles from './index.module.scss'
 const mapStateToProps = state => todosListSelector(state)
 
 const mapDispatchToProps = dispatch => ({
-  completeAll: () => dispatch(completeAll()),
-  deleteAll: () => dispatch(deleteAll()),
+  completeAll: date => dispatch(completeAll(date)),
+  deleteAll: date => dispatch(deleteAll(date)),
   deleteTodo: id => dispatch(deleteTodo(id)),
   toggleTodoStatus: id => dispatch(toggleTodoStatus(id)),
   updateDateFilter: filter => dispatch(updateDateFilter(filter)),
@@ -29,33 +28,34 @@ const mapDispatchToProps = dispatch => ({
 
 class TodoAll extends Component {
   state = {
-    scrolled: false,
-    show: 'All',
-    date: new Date()
+    scrolled: false
   }
 
   handleScroll = e => {
     if (e.target.scrollTop > 10) this.setState({ scrolled: true })
     else this.setState({ scrolled: false })
   }
-
   handleStatusFilterChange = status => this.props.updateStatusFilter(status)
   handleDateFilterChange = filter => this.props.updateDateFilter(filter)
+  handleCompleteAll = () => this.props.completeAll(this.props.dateFilter.value)
+  handleDeleteAll = () => this.props.deleteAll(this.props.dateFilter.value)
 
   render() {
-    const toolbarProps = {
-      onStatusFilterChange: this.handleStatusFilterChange
-    }
-    const listProps = {}
+    const toolbarProps = {}
     ;({
       statusFilter: toolbarProps.statusFilter,
-      completeAll: toolbarProps.completeAll,
-      deleteAll: toolbarProps.deleteAll,
+      totalTodosByDate: toolbarProps.totalByDate,
+      totalPendingTodos: toolbarProps.totalPending
+    } = this.props)
+
+    const listProps = {}
+    ;({
+      filteredTodos: listProps.todos,
       toggleTodoStatus: listProps.toggleTodoStatus,
       deleteTodo: listProps.deleteTodo
     } = this.props)
 
-    const { todos } = this.props
+    const { todos, dateFilter } = this.props
 
     return (
       <div className={styles.root}>
@@ -63,7 +63,7 @@ class TodoAll extends Component {
           <div className={styles.subtitleWrapper}>
             <DateFilter
               todos={todos}
-              value={this.props.dateFilter}
+              value={dateFilter}
               onDateFilterChange={this.handleDateFilterChange}
             />
             <Progress todos={todos} />
@@ -71,12 +71,15 @@ class TodoAll extends Component {
         </Header>
 
         <Toolbar
-          todos={todos}
           {...toolbarProps}
+          todos={todos}
+          onStatusFilterChange={this.handleStatusFilterChange}
           scrolled={this.state.scrolled}
+          onCompleteAll={this.handleCompleteAll}
+          onDeleteAll={this.handleDeleteAll}
         />
 
-        <TodoList todos={todos} onScroll={this.handleScroll} {...listProps} />
+        <TodoList {...listProps} onScroll={this.handleScroll} />
       </div>
     )
   }

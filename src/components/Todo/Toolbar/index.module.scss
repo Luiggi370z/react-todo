@@ -2,7 +2,7 @@
 
 .toolbar {
   display: flex;
-  padding: 0.6rem 1.5rem 0.5rem;
+  padding: 1.6rem 1.5rem 0.5rem;
   position: relative;
   &:after {
     content: '';
@@ -27,9 +27,9 @@
 }
 
 .filter {
-  flex: 0 1;
-  display: flex;
-  align-items: center;
+  button {
+    margin: 0 1px;
+  }
 }
 
 .actions {
@@ -40,4 +40,9 @@
   button {
     border-radius: 50%;
   }
+}
+
+.totals {
+  color: darken($outline-color, 30);
+  padding-left: 7px;
 }

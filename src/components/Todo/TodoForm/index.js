@@ -9,13 +9,9 @@ import Categories from 'mocks/categories'
 import AvatarSelector from './AvatarSelector'
 import CategorySelector from './CategorySelector'
 
-const TodoForm = ({
-  newTodo,
-  isAllDay,
-  addTodo,
-  updateField,
-  toggleAllDayFlag
-}) => {
+const TodoForm = ({ newTodo, addTodo, updateField }) => {
+  const { description, location, date, icon, category, isAllDay } = newTodo
+
   const formatDate = date =>
     format(date, `MM/DD/YYYY${isAllDay ? '' : ' hh:mm A'}`)
 
@@ -31,11 +27,10 @@ const TodoForm = ({
   }
 
   const handleAddTodo = () => addTodo(newTodo)
-
-  const { description, location, date, icon, category } = newTodo
+  const minDateTime = new Date()
   const canSave = description && location && date && icon
   const timePrecision = isAllDay ? undefined : TimePrecision.MINUTE
-  const timePickerProps = isAllDay ? undefined : { minTime: new Date() }
+  const timePickerProps = isAllDay ? undefined : { minTime: minDateTime }
 
   return (
     <form className={styles.form}>
@@ -95,8 +90,9 @@ const TodoForm = ({
         <div>
           <DateInput
             closeOnSelection={isAllDay}
+            canClearSelection={false}
             placeholder='When? *'
-            minDate={new Date()}
+            minDate={minDateTime}
             inputProps={{ readOnly: true }}
             formatDate={formatDate}
             parseDate={str => new Date(str)}
@@ -112,7 +108,7 @@ const TodoForm = ({
             label='All day'
             checked={isAllDay}
             name='isAllDay'
-            onChange={toggleAllDayFlag}
+            onChange={handleChange}
           />
         </div>
       </div>

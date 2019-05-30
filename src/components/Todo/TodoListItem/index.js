@@ -22,7 +22,9 @@ const Todo = ({ todo, onToggle, onDelete }) => {
         <div className={styles.subTitle}>{todo.location}</div>
       </div>
       <div className={styles.details}>
-        <span className={styles.date}>{format(todo.date, 'ha')}</span>
+        <span className={styles.date}>
+          {todo.isAllDay ? 'All day' : format(todo.date, 'ha')}
+        </span>
         <div className={styles.actions}>
           <ButtonGroup minimal>
             {!todo.done && (
