@@ -9,8 +9,6 @@ const Toolbar = ({
   onCompleteAll,
   onDeleteAll,
   onStatusFilterChange,
-  totalByDate,
-  totalPending,
   scrolled
 }) => {
   return (
@@ -20,10 +18,6 @@ const Toolbar = ({
       </div>
 
       <div className={styles.actions}>
-        <div className={styles.totals}>
-          <strong>{totalPending}</strong> of <strong>{totalByDate}</strong> task
-          {totalByDate !== 1 ? 's' : ''} left
-        </div>
         <ButtonGroup minimal>
           <Tooltip content='Complete All' position={Position.BOTTOM}>
             <Button icon='tick' onClick={onCompleteAll} />
@@ -43,8 +37,6 @@ Toolbar.defaultProps = {
 
 Toolbar.propTypes = {
   statusFilter: PropTypes.string.isRequired,
-  totalByDate: PropTypes.number.isRequired,
-  totalPending: PropTypes.number.isRequired,
   onCompleteAll: PropTypes.func.isRequired,
   onDeleteAll: PropTypes.func.isRequired,
   scrolled: PropTypes.bool

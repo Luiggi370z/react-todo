@@ -2,25 +2,25 @@
 
 .toolbar {
   display: flex;
-  padding: 1.6rem 1.5rem 0.5rem;
+  padding: 1rem 3.5rem 2rem;
   position: relative;
-  &:after {
+  &:before {
     content: '';
     transition: opacity 300ms ease;
     opacity: 0;
     position: absolute;
-    top: 100%;
+    top: -24px;
     left: -2rem;
     right: -2rem;
     height: 1.6rem;
     background: linear-gradient(
-      to bottom,
+      to top,
       $outline-color 0%,
       rgba(240, 244, 247, 0) 100%
     );
   }
   &.scrolled {
-    &:after {
+    &:before {
       opacity: 1;
     }
   }
@@ -40,9 +40,4 @@
   button {
     border-radius: 50%;
   }
-}
-
-.totals {
-  color: darken($outline-color, 30);
-  padding-left: 7px;
 }

@@ -4,8 +4,7 @@
 
 .todoIcon {
   width: 100%;
-  text-align: center;
-  padding-bottom: 1rem;
+  padding-bottom: 0.2rem;
   display: flex;
   justify-content: center;
   span {
@@ -27,8 +26,11 @@
 .form {
   padding: 0 3.5rem 1rem;
   > div:not(:first-child) {
-    margin: 8px 0;
+    margin: 10px 0;
     width: 100%;
+  }
+  > div:last-of-type {
+    margin-bottom: 5px;
   }
 }
 
@@ -92,6 +94,7 @@
   border-radius: 4px;
   background-color: $primary-color !important;
   font-weight: 500;
+  margin-top: 7px;
   &:hover {
     background: rgba($primary-color, 0.9) !important;
   }

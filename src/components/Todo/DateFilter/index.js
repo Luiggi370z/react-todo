@@ -19,7 +19,7 @@ const DateFilter = props => {
         <AnchorButton
           minimal
           rightIcon='caret-down'
-          icon='calendar'
+          icon='time'
           className={styles.button}>
           {props.value.key}
         </AnchorButton>

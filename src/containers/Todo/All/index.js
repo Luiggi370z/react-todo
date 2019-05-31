@@ -9,7 +9,7 @@ import {
   updateDateFilter,
   updateStatusFilter
 } from 'store/actions/todo'
-
+import { Icon } from '@blueprintjs/core'
 import Header from 'components/layout/Header'
 import { Progress, Toolbar, TodoList, DateFilter } from 'components/Todo'
 
@@ -32,7 +32,10 @@ class TodoAll extends Component {
   }
 
   handleScroll = e => {
-    if (e.target.scrollTop > 10) this.setState({ scrolled: true })
+    const { target: element } = e
+
+    if (element.scrollHeight - element.scrollTop > element.offsetHeight + 5)
+      this.setState({ scrolled: true })
     else this.setState({ scrolled: false })
   }
   handleStatusFilterChange = status => this.props.updateStatusFilter(status)
@@ -41,13 +44,6 @@ class TodoAll extends Component {
   handleDeleteAll = () => this.props.deleteAll(this.props.dateFilter.value)
 
   render() {
-    const toolbarProps = {}
-    ;({
-      statusFilter: toolbarProps.statusFilter,
-      totalTodosByDate: toolbarProps.totalByDate,
-      totalPendingTodos: toolbarProps.totalPending
-    } = this.props)
-
     const listProps = {}
     ;({
       filteredTodos: listProps.todos,
@@ -55,31 +51,57 @@ class TodoAll extends Component {
       deleteTodo: listProps.deleteTodo
     } = this.props)
 
-    const { todos, dateFilter } = this.props
+    const {
+      todos,
+      dateFilter,
+      totalTodosByDate,
+      totalPendingTodos,
+      statusFilter
+    } = this.props
+
+    const hasTodos = totalTodosByDate > 0
 
     return (
       <div className={styles.root}>
-        <Header title='My Todos'>
-          <div className={styles.subtitleWrapper}>
+        <Header
+          title='My Todos'
+          rightContent={
+            hasTodos && (
+              <div className={styles.totals}>
+                {totalPendingTodos} of {totalTodosByDate}
+              </div>
+            )
+          }>
+          <div>
             <DateFilter
               todos={todos}
               value={dateFilter}
               onDateFilterChange={this.handleDateFilterChange}
             />
-            <Progress todos={todos} />
+            {/* <Progress todos={todos} /> */}
           </div>
         </Header>
 
-        <Toolbar
-          {...toolbarProps}
-          todos={todos}
-          onStatusFilterChange={this.handleStatusFilterChange}
-          scrolled={this.state.scrolled}
-          onCompleteAll={this.handleCompleteAll}
-          onDeleteAll={this.handleDeleteAll}
-        />
+        {hasTodos && (
+          <React.Fragment>
+            <TodoList {...listProps} onScroll={this.handleScroll} />
+            <Toolbar
+              statusFilter={statusFilter}
+              todos={todos}
+              onStatusFilterChange={this.handleStatusFilterChange}
+              scrolled={this.state.scrolled}
+              onCompleteAll={this.handleCompleteAll}
+              onDeleteAll={this.handleDeleteAll}
+            />
+          </React.Fragment>
+        )}
 
-        <TodoList {...listProps} onScroll={this.handleScroll} />
+        {!hasTodos && (
+          <div className={styles.noTasks}>
+            <Icon icon='timeline-events' iconSize={62} />
+            <p>No Tasks for {dateFilter.key}</p>
+          </div>
+        )}
       </div>
     )
   }

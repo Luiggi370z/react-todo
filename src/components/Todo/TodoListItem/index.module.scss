@@ -2,10 +2,17 @@
 
 .root {
   padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin: 10px 0;
   display: flex;
   align-items: center;
+  background: #fff;
   &:hover {
-    background-color: lighten($primary-color, 34);
+    background: linear-gradient(
+      90deg,
+      lighten($primary-color, 32) 0%,
+      #fff 80.96%
+    );
     .date {
       display: none;
     }
