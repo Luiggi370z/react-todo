@@ -1,6 +1,6 @@
 @import 'styles/colors';
 
-.root {
+.grid {
   padding: 1rem;
   display: flex;
   justify-content: space-evenly;
@@ -11,10 +11,21 @@
   svg {
     width: 22px;
     height: 22px;
-    color: lighten($secondary-color, 30%);
+    color: $secondary-color;
     pointer-events: none;
   }
   span {
     pointer-events: none;
+  }
+}
+
+.item {
+  margin: 4px;
+  padding: 8px;
+  * {
+    pointer-events: none;
+  }
+  > div:global(.bp3-text-overflow-ellipsis) {
+    display: none;
   }
 }

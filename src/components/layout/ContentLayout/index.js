@@ -5,7 +5,7 @@ import { Classes } from '@blueprintjs/core'
 const ContentLayout = props => {
   const rootClasses = [
     styles.root,
-    Classes.ELEVATION_2,
+    Classes.ELEVATION_4,
     props.activeRight ? 'right-active' : ''
   ].join(' ')
 

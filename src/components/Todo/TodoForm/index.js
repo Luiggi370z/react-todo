@@ -37,12 +37,14 @@ const TodoForm = ({ newTodo, addTodo, updateField }) => {
       <div className={styles.todoIcon}>
         <Popover
           canEscapeKeyClose
+          closeOnSelection
           content={<AvatarSelector onSelect={handleChange} field='icon' />}
           position={Position.BOTTOM}>
           <Avatar
             large
             icon={icon || 'plus'}
             disabled={!icon}
+            value={icon}
             badge={
               icon && <Icon icon='edit' size={'12'} className={styles.badge} />
             }

@@ -35,7 +35,7 @@ class TodoNew extends Component {
 
     return (
       <Fragment>
-        <Header title={'New ToDo'} subtitle={subtitle} invert />
+        <Header title={'New Task'} subtitle={subtitle} invert />
         <TodoForm {...todoFormProps} />
       </Fragment>
     )

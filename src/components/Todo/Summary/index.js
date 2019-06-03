@@ -30,7 +30,7 @@ const Summary = ({ todos, toggleView }) => {
         ))}
       </div>
       <Button large minimal className='panel-button' onClick={toggleView}>
-        VIEW TODOS
+        VIEW TASKS
       </Button>
     </React.Fragment>
   )

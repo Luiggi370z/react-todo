@@ -7,10 +7,10 @@ const TodoAdd = ({ toggleView }) => {
     <Fragment>
       <h1>Hi!</h1>
       <p className={styles.description}>
-        Nothing to do yet? Think about it and add a new todo
+        Nothing to do yet? Think about it and let's get start it!
       </p>
       <Button large minimal className='panel-button' onClick={toggleView}>
-        Add
+        Add Task
       </Button>
     </Fragment>
   )

@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   span {
+    z-index: 0;
     &:global(.bp3-popover-target) {
       cursor: pointer;
       border-radius: 50%;
@@ -16,7 +17,8 @@
         background: darken($outline-color, 2%);
       }
       &:global(.bp3-popover-open) {
-        box-shadow: 0 0 0 1px $primary-color, 0 0 0 3px rgba(27, 135, 138, 0.3),
+        box-shadow: 0 0 0 1px $primary-color,
+          0 0 1px 3px rgba(255, 255, 255, 0.3),
           inset 0 1px 1px rgba(16, 22, 26, 0.2);
       }
     }

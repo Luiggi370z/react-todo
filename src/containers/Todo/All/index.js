@@ -12,7 +12,7 @@ import {
 import { Icon } from '@blueprintjs/core'
 import Header from 'components/layout/Header'
 import { Progress, Toolbar, TodoList, DateFilter } from 'components/Todo'
-
+import { CSSTransition } from 'react-transition-group'
 import styles from './index.module.scss'
 
 const mapStateToProps = state => todosListSelector(state)
@@ -64,7 +64,7 @@ class TodoAll extends Component {
     return (
       <div className={styles.root}>
         <Header
-          title='My Todos'
+          title='My Tasks'
           rightContent={
             hasTodos && (
               <div className={styles.totals}>
@@ -82,7 +82,12 @@ class TodoAll extends Component {
           </div>
         </Header>
 
-        {hasTodos && (
+        <CSSTransition
+          classNames='item'
+          timeout={300}
+          in={hasTodos}
+          exit={false}
+          unmountOnExit>
           <React.Fragment>
             <TodoList {...listProps} onScroll={this.handleScroll} />
             <Toolbar
@@ -94,14 +99,19 @@ class TodoAll extends Component {
               onDeleteAll={this.handleDeleteAll}
             />
           </React.Fragment>
-        )}
+        </CSSTransition>
 
-        {!hasTodos && (
+        <CSSTransition
+          classNames='item'
+          timeout={300}
+          in={!hasTodos}
+          exit={false}
+          unmountOnExit>
           <div className={styles.noTasks}>
             <Icon icon='timeline-events' iconSize={62} />
             <p>No Tasks for {dateFilter.key}</p>
           </div>
-        )}
+        </CSSTransition>
       </div>
     )
   }

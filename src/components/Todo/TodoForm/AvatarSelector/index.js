@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Button } from '@blueprintjs/core'
+import { Menu, MenuItem, Icon } from '@blueprintjs/core'
 import styles from './index.module.scss'
 
 const availableIcons = [
@@ -37,19 +37,17 @@ const AvatarSelector = ({ field, onSelect }) => {
   }
 
   return (
-    <div className={styles.root}>
+    <Menu className={styles.grid}>
       {availableIcons.map(name => (
-        <div key={name}>
-          <Button
-            minimal
-            large
-            name={name}
-            icon={name}
-            onClick={handleChange}
-          />
-        </div>
+        <MenuItem
+          key={name}
+          name={name}
+          className={styles.item}
+          onClick={handleChange}
+          labelElement={<Icon icon={name} />}
+        />
       ))}
-    </div>
+    </Menu>
   )
 }
 

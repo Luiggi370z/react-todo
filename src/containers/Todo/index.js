@@ -24,8 +24,8 @@ export class Todos extends Component {
     return (
       <ContentLayout
         activeRight={!viewAll}
-        left={<TodosAll />}
-        right={<TodosNew />}
+        left={<TodosNew />}
+        right={<TodosAll />}
         overlay={
           <Overlay
             left={<Summary todos={pendingTodos} toggleView={changeView} />}
