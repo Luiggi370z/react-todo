@@ -32,7 +32,7 @@ const DateTimeInput = ({ date, isAllDay, onSelect }) => {
 }
 
 DateTimeInput.propTypes = {
-  date: PropTypes.object.isRequired,
+  date: PropTypes.object,
   isAllDay: PropTypes.bool.isRequired,
   onSelect: PropTypes.func.isRequired
 }
