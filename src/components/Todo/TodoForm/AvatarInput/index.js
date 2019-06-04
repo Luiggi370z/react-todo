@@ -18,7 +18,11 @@ const AvatarInput = ({ icon, onSelect }) => {
         disabled={!icon}
         value={icon}
         badge={
-          icon && <Icon icon='edit' size={'12'} className={styles.badge} />
+          icon ? (
+            <Icon icon='edit' size={'12'} className={styles.badge} />
+          ) : (
+            <span className={styles.required}>*</span>
+          )
         }
       />
     </Popover>

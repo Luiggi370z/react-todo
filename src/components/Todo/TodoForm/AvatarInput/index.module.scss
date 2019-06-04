@@ -1,3 +1,5 @@
+@import 'styles/colors';
+
 .badge {
   background: #5c7080;
   color: #fff;
@@ -8,4 +10,11 @@
     width: 13px;
     height: 13px;
   }
+}
+
+.required {
+  color: $placeholder-color;
+  font-size: 1.1rem;
+  vertical-align: text-bottom;
+  line-height: 0.6rem;
 }
