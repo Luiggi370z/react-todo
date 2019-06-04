@@ -13,7 +13,7 @@ const DateTimeInput = ({ date, isAllDay, onSelect }) => {
 
   return (
     <div>
-      <DateTimeInput
+      <DateInput
         closeOnSelection={isAllDay}
         canClearSelection={false}
         placeholder='When? *'
@@ -37,4 +37,4 @@ DateTimeInput.propTypes = {
   onSelect: PropTypes.func.isRequired
 }
 
-export default DateInput
+export default DateTimeInput
