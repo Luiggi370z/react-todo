@@ -74,6 +74,7 @@
 
 .date {
   color: darken($outline-color, 30%);
+  transition: all 900ms ease;
 }
 
 .actions {
@@ -84,11 +85,13 @@
 }
 
 .done {
-  .title {
+  .title,
+  .date {
     text-decoration: line-through;
   }
   .title,
+  .date,
   .subTitle {
-    opacity: 0.4;
+    opacity: 0.5;
   }
 }

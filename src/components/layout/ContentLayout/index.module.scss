@@ -1,3 +1,13 @@
+.bubbleBackground {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background-repeat: no-repeat;
+  opacity: 1;
+}
+
 .root {
   border-radius: 10px;
   position: relative;
@@ -6,13 +16,24 @@
   width: 800px;
   max-width: 100%;
   min-height: 520px;
+  &:before {
+    @extend .bubbleBackground;
+    left: 0;
+    background-image: url('../../../assets/bubble.svg');
+    background-position: -10px -10px;
+  }
+  &:after {
+    @extend .bubbleBackground;
+    right: 0;
+    background-image: url('../../../assets/bubble-invert.svg');
+    background-position: 100% -10px;
+  }
 }
 
 .form {
   position: absolute;
   top: 0;
   height: 100%;
-  background: #fff;
 }
 
 .rightContainer {
@@ -22,19 +43,6 @@
   left: 0;
   width: 50%;
   z-index: 2;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 50%;
-    background-image: url('../../../assets/bubble.svg');
-    background-repeat: no-repeat;
-    background-position: -10px -10px;
-    opacity: 1;
-  }
 }
 
 .leftContainer {
@@ -45,19 +53,6 @@
   width: 50%;
   opacity: 0;
   z-index: 1;
-
-  &:before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 100%;
-    height: 50%;
-    background-image: url('../../../assets/bubble-invert.svg');
-    background-repeat: no-repeat;
-    background-position: 100% -10px;
-    opacity: 1;
-  }
 }
 
 .overlayContainer {
@@ -74,6 +69,7 @@
 .root:global(.right-active) {
   .rightContainer {
     transform: translateX(100%);
+    z-index: -1;
   }
   .leftContainer {
     transform: translateX(100%);

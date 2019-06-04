@@ -1,0 +1,24 @@
+@import 'styles/colors';
+
+.root {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  background: linear-gradient(to right, transparent 80%, #f5f5f4 91.62%);
+}
+
+.subtitleWrapper {
+  display: flex;
+  z-index: 1;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.totals {
+  color: darken($outline-color, 50);
+  padding: 5px 19px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(16, 22, 26, 0.2);
+}

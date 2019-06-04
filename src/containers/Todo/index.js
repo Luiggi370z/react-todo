@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ContentLayout, Overlay } from 'components/layout'
 import { TodoAdd, Summary } from 'components/Todo'
-import TodosAll from './All'
+import TodosAll from './MyDay'
 import TodosNew from './New'
 
 import { rootSelector, todosSummarySelector } from 'store/selectors'

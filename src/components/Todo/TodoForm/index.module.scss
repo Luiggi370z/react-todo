@@ -27,7 +27,7 @@
 .form {
   padding: 0 3.5rem 1rem;
   > div:not(:first-child) {
-    margin: 10px 0;
+    margin: 6px 0;
     width: 100%;
   }
   > div:last-of-type {
@@ -93,7 +93,7 @@
   border-radius: 4px;
   background-color: $primary-color !important;
   font-weight: 500;
-  margin-top: 7px;
+  margin-top: 13px;
   &:hover {
     background: rgba($primary-color, 0.9) !important;
   }

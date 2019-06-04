@@ -1,0 +1,17 @@
+@import 'styles/colors';
+
+.root {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 5rem;
+  > p {
+    margin-top: 15px;
+    color: darken($outline-color, 20);
+  }
+  svg {
+    color: darken($outline-color, 10);
+  }
+}

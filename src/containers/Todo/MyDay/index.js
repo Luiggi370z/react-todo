@@ -9,11 +9,12 @@ import {
   updateDateFilter,
   updateStatusFilter
 } from 'store/actions/todo'
-import { Icon } from '@blueprintjs/core'
 import Header from 'components/layout/Header'
-import { Progress, Toolbar, TodoList, DateFilter } from 'components/Todo'
+import { EmptySpace } from 'components/ui'
+import { DateFilter } from 'components/Todo'
 import { CSSTransition } from 'react-transition-group'
 import styles from './index.module.scss'
+import MyDayBody from './body'
 
 const mapStateToProps = state => todosListSelector(state)
 
@@ -44,7 +45,7 @@ class TodoAll extends Component {
   handleDeleteAll = () => this.props.deleteAll(this.props.dateFilter.value)
 
   render() {
-    const listProps = {}
+    const listProps = { onScroll: this.handleScroll }
     ;({
       filteredTodos: listProps.todos,
       toggleTodoStatus: listProps.toggleTodoStatus,
@@ -55,9 +56,17 @@ class TodoAll extends Component {
       todos,
       dateFilter,
       totalTodosByDate,
-      totalPendingTodos,
-      statusFilter
+      totalPendingTodos
     } = this.props
+
+    const toolbarProps = {
+      statusFilter: this.props.statusFilter,
+      todos: this.props.todos,
+      onStatusFilterChange: this.handleStatusFilterChange,
+      scrolled: this.state.scrolled,
+      onCompleteAll: this.handleCompleteAll,
+      onDeleteAll: this.handleDeleteAll
+    }
 
     const hasTodos = totalTodosByDate > 0
 
@@ -88,17 +97,7 @@ class TodoAll extends Component {
           in={hasTodos}
           exit={false}
           unmountOnExit>
-          <React.Fragment>
-            <TodoList {...listProps} onScroll={this.handleScroll} />
-            <Toolbar
-              statusFilter={statusFilter}
-              todos={todos}
-              onStatusFilterChange={this.handleStatusFilterChange}
-              scrolled={this.state.scrolled}
-              onCompleteAll={this.handleCompleteAll}
-              onDeleteAll={this.handleDeleteAll}
-            />
-          </React.Fragment>
+          <MyDayBody listProps={listProps} toolbarProps={toolbarProps} />
         </CSSTransition>
 
         <CSSTransition
@@ -107,10 +106,10 @@ class TodoAll extends Component {
           in={!hasTodos}
           exit={false}
           unmountOnExit>
-          <div className={styles.noTasks}>
-            <Icon icon='timeline-events' iconSize={62} />
-            <p>No Tasks for {dateFilter.key}</p>
-          </div>
+          <EmptySpace
+            icon='timeline-events'
+            message={`No Tasks for ${dateFilter.key}`}
+          />
         </CSSTransition>
       </div>
     )
