@@ -1,5 +1,4 @@
 @import 'styles/colors';
-@import 'styles/mixins';
 @import 'styles/input';
 
 .todoIcon {
@@ -89,8 +88,6 @@
   }
 }
 
-@include categories-colors;
-
 .saveButton:not([disabled]) {
   color: #fff !important;
   border-radius: 4px;
@@ -109,16 +106,4 @@
   font-size: 0.7rem;
   color: $placeholder-color;
   vertical-align: super;
-}
-
-.badge {
-  background: #5c7080;
-  color: #fff;
-  position: relative;
-  border-radius: inherit;
-  padding: 5px;
-  svg {
-    width: 13px;
-    height: 13px;
-  }
 }

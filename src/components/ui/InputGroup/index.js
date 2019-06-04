@@ -26,7 +26,7 @@ const InputGroup = props => {
     <div className={`${styles.inputGroup} ${props.className || ''}`}>
       <input {...getHTMLProps(props)} onChange={props.onChange} />
       {props.canClear && props.value && (
-        <Button icon={'cross'} minimal onClick={handleClear} />
+        <Button icon={'cross'} minimal onClick={handleClear} tabIndex={-1} />
       )}
       {props.children}
     </div>

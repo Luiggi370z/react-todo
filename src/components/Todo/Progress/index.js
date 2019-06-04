@@ -3,11 +3,8 @@ import PropTypes from 'prop-types'
 import { Spinner } from '@blueprintjs/core'
 import styles from './index.module.scss'
 
-const Progress = ({ todos }) => {
-  const completed = todos.filter(t => t.done).length
-  const percentage = completed
-    ? parseFloat(completed / todos.length).toFixed(2)
-    : 0
+const Progress = ({ completed, total }) => {
+  const percentage = completed ? parseFloat(completed / total).toFixed(2) : 0
 
   return (
     <div className={styles.progress}>
@@ -18,7 +15,8 @@ const Progress = ({ todos }) => {
 }
 
 Progress.propTypes = {
-  todos: PropTypes.array.isRequired
+  completed: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired
 }
 
 export default Progress

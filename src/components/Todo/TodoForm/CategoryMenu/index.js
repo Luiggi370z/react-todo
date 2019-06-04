@@ -4,7 +4,7 @@ import { Menu, MenuItem, Icon } from '@blueprintjs/core'
 import Categories from 'mocks/categories'
 import styles from './index.module.scss'
 
-const CategorySelector = ({ field, onSelect }) => {
+const CategoryMenu = ({ field, onSelect }) => {
   const handleChange = e => {
     onSelect({
       target: {
@@ -30,9 +30,9 @@ const CategorySelector = ({ field, onSelect }) => {
   )
 }
 
-CategorySelector.propTypes = {
+CategoryMenu.propTypes = {
   field: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired
 }
 
-export default CategorySelector
+export default CategoryMenu

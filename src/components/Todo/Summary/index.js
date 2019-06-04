@@ -37,7 +37,8 @@ const Summary = ({ todos, toggleView }) => {
 }
 
 Summary.propTypes = {
-  todos: PropTypes.array.isRequired
+  todos: PropTypes.array.isRequired,
+  toggleView: PropTypes.func.isRequired
 }
 
 export default Summary
