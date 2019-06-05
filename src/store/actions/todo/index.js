@@ -1,12 +1,8 @@
 import * as Types from './action-types'
 
-export const addTodo = newTodo => ({
+export const addTodo = todo => ({
   type: Types.ADD_TODO,
-  payload: {
-    ...newTodo,
-    done: false,
-    id: `${Date.now()}`
-  }
+  payload: { todo }
 })
 
 export const deleteTodo = id => ({

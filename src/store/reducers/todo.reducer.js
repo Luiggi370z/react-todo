@@ -1,5 +1,14 @@
 import * as Actions from 'store/actions/todo/action-types'
+import { dateToCalendar } from 'utils'
 import { isSameDay } from 'date-fns'
+
+const omit = (source, property) =>
+  Object.keys(source).reduce((obj, key) => {
+    if (key !== property) {
+      obj[key] = { ...source[key] }
+    }
+    return obj
+  }, {})
 
 const getDefaultDate = () => ({
   key: 'Today',
@@ -7,10 +16,11 @@ const getDefaultDate = () => ({
 })
 
 const newTodo = {
+  id: `${Date.now()}`,
   category: '1',
   description: '',
   location: '',
-  date: null,
+  done: false,
   icon: '',
   isAllDay: false
 }
@@ -18,7 +28,10 @@ const newTodo = {
 const initialState = {
   newTodo,
   isAllDay: false,
-  todos: [],
+  todos: {
+    byId: {},
+    byDate: {}
+  },
   filters: {
     date: getDefaultDate(),
     status: 'All'
@@ -28,18 +41,40 @@ const initialState = {
 const reducer = {
   [Actions.ADD_TODO]: (state, payload) => ({
     ...state,
-    todos: [...state.todos, { ...payload }],
+    todos: {
+      byId: {
+        ...state.todos.byId,
+        [payload.todo.id]: payload.todo
+      }
+    },
     newTodo
   }),
-  [Actions.DELETE_TODO]: (state, payload) => ({
-    ...state,
-    todos: state.todos.filter(todo => todo.id !== payload.id)
-  }),
+  [Actions.DELETE_TODO]: (state, payload) => {
+    const dateId = dateToCalendar(state.todos.byId[payload.id].date)
+
+    return {
+      ...state,
+      todos: {
+        byId: omit(state.todos.byId, payload.id),
+        byDate:
+          state.todos.byDate[dateId].length === 1
+            ? omit(state.todos.byDate, dateId)
+            : state.todos.byDate[dateId].filter(id => id !== payload.id)
+      }
+    }
+  },
   [Actions.TOGGLE_TODO_STATUS]: (state, payload) => ({
     ...state,
-    todos: state.todos.map(todo =>
-      todo.id === payload.id ? { ...todo, done: !todo.done } : todo
-    )
+    todos: {
+      ...state.todos,
+      byId: {
+        ...state.todos.byId,
+        [payload.id]: {
+          ...state.todos.byId[payload.id],
+          done: !state.todos.byId[payload.id].done
+        }
+      }
+    }
   }),
   [Actions.COMPLETE_ALL_TODOS]: (state, payload) => ({
     ...state,
