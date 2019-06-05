@@ -37,10 +37,8 @@ export const todosSummarySelector = createSelector(
 )
 
 export const todoNewSelector = createSelector(
-  state => state.todos.newTodo,
   state => state.todos.todos.filter(todo => isToday(todo.date)).length,
-  (newTodo, totalTodosToday) => ({
-    newTodo,
+  totalTodosToday => ({
     totalTodosToday
   })
 )

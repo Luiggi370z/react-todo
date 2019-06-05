@@ -17,15 +17,16 @@ const CategoryInput = ({ category, onSelect }) => {
         className={styles[category]}
         value={Categories[category]}
         canClear={false}
+        placeholder='Category *'
         readOnly>
-        <Icon icon='symbol-circle' />
+        {category && <Icon icon='symbol-circle' />}
       </InputGroup>
     </Popover>
   )
 }
 
 CategoryInput.propTypes = {
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   onSelect: PropTypes.func.isRequired
 }
 

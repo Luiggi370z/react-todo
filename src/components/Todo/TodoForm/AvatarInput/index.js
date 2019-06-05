@@ -30,7 +30,7 @@ const AvatarInput = ({ icon, onSelect }) => {
 }
 
 AvatarInput.propTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   onSelect: PropTypes.func.isRequired
 }
 

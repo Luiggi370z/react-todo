@@ -7,6 +7,8 @@ const getDefaultDate = () => ({
 })
 
 const newTodo = {
+  id: `${Date.now()}`,
+  done: false,
   category: '1',
   description: '',
   location: '',
@@ -16,7 +18,6 @@ const newTodo = {
 }
 
 const initialState = {
-  newTodo,
   isAllDay: false,
   todos: [],
   filters: {
@@ -28,7 +29,7 @@ const initialState = {
 const reducer = {
   [Actions.ADD_TODO]: (state, payload) => ({
     ...state,
-    todos: [...state.todos, { ...payload }],
+    todos: [...state.todos, payload.todo],
     newTodo
   }),
   [Actions.DELETE_TODO]: (state, payload) => ({
@@ -72,13 +73,6 @@ const reducer = {
     filters: {
       ...state.filters,
       status: payload.status
-    }
-  }),
-  [Actions.UPDATE_NEW_TODO_FIELD]: (state, payload) => ({
-    ...state,
-    newTodo: {
-      ...state.newTodo,
-      [payload.field]: payload.value
     }
   })
 }

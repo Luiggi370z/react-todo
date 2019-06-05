@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useForm } from 'hooks'
 import styles from './index.module.scss'
 import { Button, Switch } from '@blueprintjs/core'
 import { InputGroup } from 'components/ui'
@@ -7,36 +8,50 @@ import AvatarInput from './AvatarInput'
 import CategoryInput from './CategoryInput'
 import DateTimeInput from './DateTimeInput'
 
-const TodoForm = ({ newTodo, addTodo, updateField }) => {
-  const { description, location, date, icon, category, isAllDay } = newTodo
+const initialValue = {
+  icon: '',
+  description: '',
+  category: '1',
+  location: '',
+  isAllDay: false
+}
 
-  const handleChange = ({ target }) => {
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    updateField({ field: target.name, value })
+const TodoForm = ({ addTodo }) => {
+  const [date, setDate] = useState(null)
+  const { values, handleChange, handleSubmit, reset } = useForm({
+    initialValue,
+    onSubmit: fields => {
+      addTodo({
+        id: `${Date.now()}`,
+        done: false,
+        date,
+        ...fields
+      })
+      setDate(null)
+    }
+  })
+
+  const handleClear = field => reset(field)
+
+  const handleDateChange = (newDate, isUserChange) => {
+    if (isUserChange) setDate(newDate)
   }
 
-  const handleClear = field => updateField({ field, value: '' })
-
-  const handleDateChange = (date, isUserChange) => {
-    if (isUserChange) updateField({ field: 'date', value: date })
-  }
-
-  const handleAddTodo = () => addTodo(newTodo)
-  const canSave = description && location && date && icon
+  const canSave = date && values.description && values.location && values.icon
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.todoIcon}>
-        <AvatarInput icon={icon} onSelect={handleChange} />
+        <AvatarInput icon={values.icon} onSelect={handleChange} />
       </div>
       <div className={styles.category}>
-        <CategoryInput category={category} onSelect={handleChange} />
+        <CategoryInput category={values.category} onSelect={handleChange} />
       </div>
       <div>
         <InputGroup
           name='description'
           placeholder='What I have to do? *'
-          value={description}
+          value={values.description}
           autoComplete='off'
           onChange={handleChange}
           onClear={handleClear}
@@ -46,7 +61,7 @@ const TodoForm = ({ newTodo, addTodo, updateField }) => {
         <InputGroup
           name='location'
           placeholder='Where? *'
-          value={location}
+          value={values.location}
           autoComplete='off'
           onChange={handleChange}
           onClear={handleClear}
@@ -55,13 +70,13 @@ const TodoForm = ({ newTodo, addTodo, updateField }) => {
       <div className={styles.date}>
         <DateTimeInput
           date={date}
-          isAllDay={isAllDay}
+          isAllDay={values.isAllDay}
           onSelect={handleDateChange}
         />
         <div className={styles.allDay}>
           <Switch
             label='All day'
-            checked={isAllDay}
+            checked={values.isAllDay}
             name='isAllDay'
             onChange={handleChange}
           />
@@ -73,8 +88,8 @@ const TodoForm = ({ newTodo, addTodo, updateField }) => {
         minimal
         fill
         className={styles.saveButton}
-        disabled={!canSave}
-        onClick={handleAddTodo}>
+        type='submit'
+        disabled={!canSave}>
         ADD TASK
       </Button>
     </form>
@@ -82,9 +97,7 @@ const TodoForm = ({ newTodo, addTodo, updateField }) => {
 }
 
 TodoForm.propTypes = {
-  newTodo: PropTypes.object.isRequired,
-  addTodo: PropTypes.func.isRequired,
-  updateField: PropTypes.func.isRequired
+  addTodo: PropTypes.func.isRequired
 }
 
 export default TodoForm

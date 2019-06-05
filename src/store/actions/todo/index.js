@@ -1,12 +1,8 @@
 import * as Types from './action-types'
 
-export const addTodo = newTodo => ({
+export const addTodo = todo => ({
   type: Types.ADD_TODO,
-  payload: {
-    ...newTodo,
-    done: false,
-    id: `${Date.now()}`
-  }
+  payload: { todo }
 })
 
 export const deleteTodo = id => ({
@@ -38,14 +34,6 @@ export const updateDateFilter = ({ key, value }) => ({
   type: Types.UPDATE_TODO_DATE_FILTER,
   payload: {
     key,
-    value
-  }
-})
-
-export const updateField = ({ field, value }) => ({
-  type: Types.UPDATE_NEW_TODO_FIELD,
-  payload: {
-    field,
     value
   }
 })
