@@ -1,13 +1,4 @@
-import {
-  format,
-  isToday,
-  isTomorrow,
-  isThisWeek,
-  isThisYear
-  // isAfter,
-  // isBefore,
-  // endOfWeek
-} from 'date-fns'
+import { format, isToday, isTomorrow, isThisWeek, isThisYear } from 'date-fns'
 
 export default date => {
   if (isToday(date)) return 'Today'

@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 
 const DateTimeInput = ({ date, isAllDay, onSelect }) => {
   const minDateTime = new Date()
-  const formatDate = date =>
-    format(date, `MM/DD/YYYY${isAllDay ? '' : ' hh:mm A'}`)
+  const formatDate = value =>
+    format(value, `MM/DD/YYYY${isAllDay ? '' : ' hh:mm A'}`)
   const timePrecision = isAllDay ? undefined : TimePrecision.MINUTE
   const timePickerProps = isAllDay ? undefined : { minTime: minDateTime }
 
@@ -16,7 +16,7 @@ const DateTimeInput = ({ date, isAllDay, onSelect }) => {
       <DateInput
         closeOnSelection={isAllDay}
         canClearSelection={false}
-        placeholder='When? *'
+        placeholder="When? *"
         minDate={minDateTime}
         inputProps={{ readOnly: true }}
         formatDate={formatDate}
@@ -32,9 +32,13 @@ const DateTimeInput = ({ date, isAllDay, onSelect }) => {
 }
 
 DateTimeInput.propTypes = {
-  date: PropTypes.object,
+  date: PropTypes.instanceOf(Date),
   isAllDay: PropTypes.bool.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+}
+
+DateTimeInput.defaultProps = {
+  date: null,
 }
 
 export default DateTimeInput

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './index.module.scss'
 import { format } from 'date-fns'
 import { Button, ButtonGroup } from '@blueprintjs/core'
 import Avatar from 'components/ui/Avatar'
+import styles from './index.module.scss'
 
 const Todo = ({ todo, onToggle, onDelete }) => {
   const handleToggle = () => {
@@ -28,12 +28,10 @@ const Todo = ({ todo, onToggle, onDelete }) => {
         <div className={styles.actions}>
           <ButtonGroup minimal>
             {!todo.done && (
-              <Button icon={'tick'} minimal onClick={handleToggle} />
+              <Button icon="tick" minimal onClick={handleToggle} />
             )}
-            {todo.done && (
-              <Button icon={'undo'} minimal onClick={handleToggle} />
-            )}
-            <Button icon={'trash'} minimal onClick={handleDelete} />
+            {todo.done && <Button icon="undo" minimal onClick={handleToggle} />}
+            <Button icon="trash" minimal onClick={handleDelete} />
           </ButtonGroup>
         </div>
       </div>
@@ -42,9 +40,16 @@ const Todo = ({ todo, onToggle, onDelete }) => {
 }
 
 Todo.propTypes = {
-  todo: PropTypes.object.isRequired,
+  todo: PropTypes.shape({
+    id: PropTypes.string,
+    description: PropTypes.string,
+    location: PropTypes.string,
+    done: PropTypes.bool,
+    isAllDay: PropTypes.bool,
+    date: PropTypes.instanceOf(Date),
+  }).isRequired,
   onToggle: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 }
 
 export default Todo

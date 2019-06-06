@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { ButtonGroup, Button } from '@blueprintjs/core'
 import styles from './index.module.scss'
+
 const statuses = ['All', 'Done', 'Active']
 
 const StatusFilter = ({ value, onSelect }) => {
@@ -26,7 +27,7 @@ const StatusFilter = ({ value, onSelect }) => {
 
 StatusFilter.propTypes = {
   value: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 }
 
 export default StatusFilter

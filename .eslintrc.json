@@ -2,9 +2,10 @@
   "env": {
     "node": true,
     "browser": true,
-    "es6": true
+    "es6": true,
+    "jest": true
   },
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "globals": {
     "Atomics": "readonly",
@@ -23,8 +24,13 @@
     "comma-dangle": "off",
     "indent": "off",
     "no-trailing-spaces": "off",
-    "semi": "off",
-    "react/jsx-filename-extension": 0,
-    "jsx-quotes": ["error", "prefer-single"]
+    "react/jsx-filename-extension": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
   }
 }

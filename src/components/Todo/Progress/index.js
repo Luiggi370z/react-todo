@@ -9,14 +9,14 @@ const Progress = ({ completed, total }) => {
   return (
     <div className={styles.progress}>
       <Spinner size={25} value={percentage} />
-      <span>{percentage * 100}% done</span>
+      <span>{`${percentage * 100} % done`}</span>
     </div>
   )
 }
 
 Progress.propTypes = {
   completed: PropTypes.number.isRequired,
-  total: PropTypes.number.isRequired
+  total: PropTypes.number.isRequired,
 }
 
 export default Progress

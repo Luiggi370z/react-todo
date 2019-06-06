@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './index.module.scss'
 import { Button, ButtonGroup, Tooltip, Position } from '@blueprintjs/core'
+import styles from './index.module.scss'
 import StatusFilter from './StatusFilter'
 
 const Toolbar = ({
@@ -9,7 +9,7 @@ const Toolbar = ({
   onCompleteAll,
   onDeleteAll,
   onStatusFilterChange,
-  scrolled
+  scrolled,
 }) => {
   return (
     <div className={`${styles.toolbar} ${scrolled ? styles.scrolled : ''}`}>
@@ -19,11 +19,11 @@ const Toolbar = ({
 
       <div className={styles.actions}>
         <ButtonGroup minimal>
-          <Tooltip content='Complete All' position={Position.BOTTOM}>
-            <Button icon='tick' onClick={onCompleteAll} />
+          <Tooltip content="Complete All" position={Position.BOTTOM}>
+            <Button icon="tick" onClick={onCompleteAll} />
           </Tooltip>
-          <Tooltip content='Remove All' position={Position.BOTTOM}>
-            <Button icon='trash' onClick={onDeleteAll} />
+          <Tooltip content="Remove All" position={Position.BOTTOM}>
+            <Button icon="trash" onClick={onDeleteAll} />
           </Tooltip>
         </ButtonGroup>
       </div>
@@ -32,14 +32,15 @@ const Toolbar = ({
 }
 
 Toolbar.defaultProps = {
-  scrolled: false
+  scrolled: false,
 }
 
 Toolbar.propTypes = {
   statusFilter: PropTypes.string.isRequired,
   onCompleteAll: PropTypes.func.isRequired,
   onDeleteAll: PropTypes.func.isRequired,
-  scrolled: PropTypes.bool
+  scrolled: PropTypes.bool,
+  onStatusFilterChange: PropTypes.func.isRequired,
 }
 
 export default Toolbar

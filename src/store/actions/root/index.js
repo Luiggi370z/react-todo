@@ -1,5 +1,7 @@
-import { TOGGLE_VIEW } from './action-types'
+import TOGGLE_VIEW from './action-types'
 
-export const toggleView = () => ({
-  type: TOGGLE_VIEW
+const toggleView = () => ({
+  type: TOGGLE_VIEW,
 })
+
+export default toggleView

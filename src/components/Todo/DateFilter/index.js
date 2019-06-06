@@ -1,27 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { AnchorButton, Popover, Position } from '@blueprintjs/core'
 import DateSelector from './DateSelector'
 import styles from './index.module.scss'
-import { AnchorButton, Popover, Position } from '@blueprintjs/core'
 
-const DateFilter = props => {
+const DateFilter = ({ todos, onDateFilterChange, value }) => {
   return (
     <div>
       <Popover
-        content={
-          <DateSelector
-            todos={props.todos}
-            onSelect={props.onDateFilterChange}
-          />
-        }
+        content={<DateSelector todos={todos} onSelect={onDateFilterChange} />}
         position={Position.BOTTOM_LEFT}
-        minimal>
+        minimal
+      >
         <AnchorButton
           minimal
-          rightIcon='caret-down'
-          icon='time'
-          className={styles.button}>
-          {props.value.key}
+          rightIcon="caret-down"
+          icon="time"
+          className={styles.button}
+        >
+          {value.key}
         </AnchorButton>
       </Popover>
     </div>
@@ -31,8 +28,10 @@ const DateFilter = props => {
 DateFilter.propTypes = {
   value: PropTypes.shape({
     key: PropTypes.string,
-    value: PropTypes.object
-  }).isRequired
+    value: PropTypes.object,
+  }).isRequired,
+  onDateFilterChange: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default DateFilter

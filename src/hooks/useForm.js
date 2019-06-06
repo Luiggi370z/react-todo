@@ -12,16 +12,16 @@ const useForm = ({ initialValue = {}, onSubmit }) => {
   const handleChange = event => {
     const { target } = event
 
-    setValues(values => ({
-      ...values,
-      [target.name]: target.type === 'checkbox' ? target.checked : target.value
+    setValues(oldValues => ({
+      ...oldValues,
+      [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     }))
   }
 
   const reset = fieldName => {
-    setValues(values => ({
-      ...values,
-      [fieldName]: typeof values[fieldName] === 'boolean' ? false : ''
+    setValues(oldValues => ({
+      ...oldValues,
+      [fieldName]: typeof values[fieldName] === 'boolean' ? false : '',
     }))
   }
 
@@ -29,7 +29,7 @@ const useForm = ({ initialValue = {}, onSubmit }) => {
     handleChange,
     handleSubmit,
     values,
-    reset
+    reset,
   }
 }
 

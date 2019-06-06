@@ -14,7 +14,7 @@ const EmptySpace = ({ icon, message }) => {
 
 EmptySpace.propTypes = {
   icon: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired,
 }
 
 export default EmptySpace

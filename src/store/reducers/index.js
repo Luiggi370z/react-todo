@@ -4,5 +4,5 @@ import TodoReducer from './todo.reducer'
 
 export default combineReducers({
   root: RootReducer,
-  todos: TodoReducer
+  todos: TodoReducer,
 })

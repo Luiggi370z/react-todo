@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Avatar } from 'components/ui'
-import AvatarSelector from '../AvatarMenu'
 import { Popover, Position, Icon } from '@blueprintjs/core'
+import AvatarSelector from '../AvatarMenu'
 import styles from './index.module.scss'
 
 const AvatarInput = ({ icon, onSelect }) => {
@@ -10,8 +10,9 @@ const AvatarInput = ({ icon, onSelect }) => {
     <Popover
       canEscapeKeyClose
       closeOnSelection
-      content={<AvatarSelector onSelect={onSelect} field='icon' />}
-      position={Position.BOTTOM}>
+      content={<AvatarSelector onSelect={onSelect} field="icon" />}
+      position={Position.BOTTOM}
+    >
       <Avatar
         large
         icon={icon || 'plus'}
@@ -19,7 +20,7 @@ const AvatarInput = ({ icon, onSelect }) => {
         value={icon}
         badge={
           icon ? (
-            <Icon icon='edit' size={'12'} className={styles.badge} />
+            <Icon icon="edit" size="12" className={styles.badge} />
           ) : (
             <span className={styles.required}>*</span>
           )
@@ -31,7 +32,11 @@ const AvatarInput = ({ icon, onSelect }) => {
 
 AvatarInput.propTypes = {
   icon: PropTypes.string,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
+}
+
+AvatarInput.defaultProps = {
+  icon: '',
 }
 
 export default AvatarInput

@@ -7,14 +7,14 @@ export const todosListSelector = createSelector(
   state => state.todos.filters.status,
   (todos, dateFilter, statusFilter) => {
     const todosByDate = todos.filter(todo =>
-      isSameDay(todo.date, dateFilter.value)
+      isSameDay(todo.date, dateFilter.value),
     )
     const totalPendingTodos = todosByDate.filter(todo => !todo.done).length
     const filteredTodos =
       statusFilter === 'All'
         ? todosByDate
         : todosByDate.filter(todo =>
-            statusFilter === 'Done' ? todo.done : !todo.done
+            statusFilter === 'Done' ? todo.done : !todo.done,
           )
 
     return {
@@ -23,27 +23,27 @@ export const todosListSelector = createSelector(
       statusFilter,
       totalTodosByDate: todosByDate.length,
       totalPendingTodos,
-      filteredTodos
+      filteredTodos,
     }
-  }
+  },
 )
 
 export const todosSummarySelector = createSelector(
   state =>
     state.todos.todos.filter(
-      todo => (isToday(todo.date) || isFuture(todo.date)) && !todo.done
+      todo => (isToday(todo.date) || isFuture(todo.date)) && !todo.done,
     ),
-  pendingTodos => ({ pendingTodos })
+  pendingTodos => ({ pendingTodos }),
 )
 
 export const todoNewSelector = createSelector(
   state => state.todos.todos.filter(todo => isToday(todo.date)).length,
   totalTodosToday => ({
-    totalTodosToday
-  })
+    totalTodosToday,
+  }),
 )
 
 export const rootSelector = createSelector(
   state => state.root.viewAll,
-  viewAll => ({ viewAll })
+  viewAll => ({ viewAll }),
 )

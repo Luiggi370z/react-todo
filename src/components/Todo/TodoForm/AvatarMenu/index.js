@@ -23,7 +23,7 @@ const availableIcons = [
   'shopping-cart',
   'tree',
   'wrench',
-  'dollar'
+  'dollar',
 ]
 
 const AvatarMenu = ({ field, onSelect }) => {
@@ -31,8 +31,8 @@ const AvatarMenu = ({ field, onSelect }) => {
     onSelect({
       target: {
         value: e.target.name,
-        name: field
-      }
+        name: field,
+      },
     })
   }
 
@@ -53,7 +53,7 @@ const AvatarMenu = ({ field, onSelect }) => {
 
 AvatarMenu.propTypes = {
   field: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 }
 
 export default AvatarMenu

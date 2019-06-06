@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -10,30 +10,29 @@ import { TodoForm } from 'components/Todo'
 const mapStateToProps = state => todoNewSelector(state)
 
 const mapDispatchToProps = dispatch => ({
-  addTodo: newTodo => dispatch(addTodo(newTodo))
+  addNewTodo: newTodo => dispatch(addTodo(newTodo)),
 })
 
-class TodoNew extends Component {
-  static propTypes = {
-    totalTodosToday: PropTypes.number.isRequired
-  }
+const TodoNew = props => {
+  const { totalTodosToday, addNewTodo } = props
+  const subtitle = `${totalTodosToday} task${
+    totalTodosToday !== 1 ? 's' : ''
+  } for today`
 
-  render() {
-    const { totalTodosToday, addTodo } = this.props
-    const subtitle = `${totalTodosToday} task${
-      totalTodosToday !== 1 ? 's' : ''
-    } for today`
+  return (
+    <Fragment>
+      <Header title="New Task" subtitle={subtitle} invert />
+      <TodoForm addNewTodo={addNewTodo} />
+    </Fragment>
+  )
+}
 
-    return (
-      <Fragment>
-        <Header title={'New Task'} subtitle={subtitle} invert />
-        <TodoForm addTodo={addTodo} />
-      </Fragment>
-    )
-  }
+TodoNew.propTypes = {
+  totalTodosToday: PropTypes.number.isRequired,
+  addNewTodo: PropTypes.func.isRequired,
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TodoNew)

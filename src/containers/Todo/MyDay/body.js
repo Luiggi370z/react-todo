@@ -8,13 +8,14 @@ const MyDayBody = ({ listProps, toolbarProps }) => {
   return (
     <React.Fragment>
       <CSSTransition
-        classNames='item'
+        classNames="item"
         timeout={300}
         in={!listProps.todos.length}
         exit={false}
-        unmountOnExit>
+        unmountOnExit
+      >
         <EmptySpace
-          icon='property'
+          icon="property"
           message={`No '${toolbarProps.statusFilter}' Tasks`}
         />
       </CSSTransition>
@@ -25,8 +26,20 @@ const MyDayBody = ({ listProps, toolbarProps }) => {
 }
 
 MyDayBody.propTypes = {
-  listProps: PropTypes.object.isRequired,
-  toolbarProps: PropTypes.object.isRequired
+  listProps: PropTypes.shape({
+    onScroll: PropTypes.func,
+    todos: PropTypes.arrayOf(PropTypes.object),
+    toggleTodoStatus: PropTypes.func,
+    deleteTodo: PropTypes.func,
+  }).isRequired,
+  toolbarProps: PropTypes.shape({
+    statusFilter: PropTypes.string,
+    todos: PropTypes.arrayOf(PropTypes.object),
+    scrolled: PropTypes.bool,
+    onStatusFilterChange: PropTypes.func,
+    onCompleteAll: PropTypes.func,
+    onDeleteAll: PropTypes.func,
+  }).isRequired,
 }
 
 export default MyDayBody

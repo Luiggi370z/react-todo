@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styles from './index.module.scss'
 import { Button, Icon } from '@blueprintjs/core'
 import Categories from 'mocks/categories'
+import styles from './index.module.scss'
 
 const Summary = ({ todos, toggleView }) => {
   const countByCategory = categoryId => {
@@ -23,13 +23,13 @@ const Summary = ({ todos, toggleView }) => {
           <div key={key}>
             <div className={styles.label}>{Categories[key]}</div>
             <div className={`${styles.category} ${styles[key]}`}>
-              <Icon icon='symbol-circle' />
+              <Icon icon="symbol-circle" />
             </div>
             <div className={styles.value}>{countByCategory(key)}</div>
           </div>
         ))}
       </div>
-      <Button large minimal className='panel-button' onClick={toggleView}>
+      <Button large minimal className="panel-button" onClick={toggleView}>
         VIEW TASKS
       </Button>
     </React.Fragment>
@@ -37,8 +37,8 @@ const Summary = ({ todos, toggleView }) => {
 }
 
 Summary.propTypes = {
-  todos: PropTypes.array.isRequired,
-  toggleView: PropTypes.func.isRequired
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  toggleView: PropTypes.func.isRequired,
 }
 
 export default Summary

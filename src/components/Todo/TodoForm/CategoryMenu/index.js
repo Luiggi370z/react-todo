@@ -9,8 +9,8 @@ const CategoryMenu = ({ field, onSelect }) => {
     onSelect({
       target: {
         value: e.target.name,
-        name: field
-      }
+        name: field,
+      },
     })
   }
 
@@ -21,7 +21,7 @@ const CategoryMenu = ({ field, onSelect }) => {
           key={key}
           text={Categories[key]}
           name={key}
-          labelElement={<Icon icon='symbol-circle' />}
+          labelElement={<Icon icon="symbol-circle" />}
           className={`${styles.category} ${styles[key]}`}
           onClick={handleChange}
         />
@@ -32,7 +32,7 @@ const CategoryMenu = ({ field, onSelect }) => {
 
 CategoryMenu.propTypes = {
   field: PropTypes.string.isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 }
 
 export default CategoryMenu

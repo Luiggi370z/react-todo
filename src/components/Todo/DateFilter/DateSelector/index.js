@@ -1,9 +1,7 @@
 import React, { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Menu, MenuItem, MenuDivider } from '@blueprintjs/core'
-import {
- isToday, isThisWeek, isAfter, isBefore, endOfWeek 
-} from 'date-fns'
+import { isToday, isThisWeek, isAfter, isBefore, endOfWeek } from 'date-fns'
 import { groupByDate } from 'utils'
 import styles from './index.module.scss'
 
@@ -24,23 +22,23 @@ const getStats = list => ({
   thisWeek: groupByDate(
     list,
     todo =>
-      isAfter(todo.date, new Date())
-      && isBefore(todo.date, endOfWeek(new Date()))
+      isAfter(todo.date, new Date()) &&
+      isBefore(todo.date, endOfWeek(new Date())),
   ),
-  upcoming: groupByDate(list, todo => !isThisWeek(todo.date))
+  upcoming: groupByDate(list, todo => !isThisWeek(todo.date)),
 })
 
-const DateSelector = (props) => {
+const DateSelector = props => {
   const { todos } = props
   const { totalToday, thisWeek, upcoming } = getStats(todos)
   const { onSelect } = props
 
   const handleTodayFilter = () => onSelect({ key: 'Today', value: new Date() })
-  const handleOtherFilter = (e) => {
+  const handleOtherFilter = e => {
     const [firstTodo] = thisWeek[e.target.name] || upcoming[e.target.name]
     onSelect({
       key: e.target.name,
-      value: firstTodo.date
+      value: firstTodo.date,
     })
   }
 
@@ -59,7 +57,7 @@ const DateSelector = (props) => {
 
 DateSelector.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onSelect: PropTypes.func.isRequired
+  onSelect: PropTypes.func.isRequired,
 }
 
 export default memo(DateSelector)

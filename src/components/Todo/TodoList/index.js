@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import styles from './index.module.scss'
 import TodoListItem from '../TodoListItem'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const TodoList = ({ todos, onScroll, toggleTodoStatus, deleteTodo }) => {
   return (
     <div className={styles.list} onScroll={onScroll}>
       <TransitionGroup>
         {todos.map(todo => (
-          <CSSTransition key={todo.id} timeout={300} classNames='item'>
+          <CSSTransition key={todo.id} timeout={300} classNames="item">
             <TodoListItem
               todo={todo}
               onToggle={toggleTodoStatus}
@@ -23,8 +23,10 @@ const TodoList = ({ todos, onScroll, toggleTodoStatus, deleteTodo }) => {
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array.isRequired,
-  onScroll: PropTypes.func.isRequired
+  todos: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onScroll: PropTypes.func.isRequired,
+  toggleTodoStatus: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
 }
 
 export default TodoList
