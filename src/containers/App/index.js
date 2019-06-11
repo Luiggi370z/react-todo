@@ -4,7 +4,7 @@ import Todos from 'containers/Todo'
 
 const App = () => {
   return (
-    <div className="root">
+    <div className="root" data-test="root">
       <Todos />
     </div>
   )

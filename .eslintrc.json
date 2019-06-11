@@ -24,7 +24,13 @@
     "comma-dangle": "off",
     "indent": "off",
     "no-trailing-spaces": "off",
-    "react/jsx-filename-extension": 0
+    "react/jsx-filename-extension": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setupTests.js"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {
