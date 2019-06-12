@@ -30,3 +30,11 @@ It correctly bundles React in production mode and optimizes the build for the be
 ### Deployment
 
 ### `npm run build` fails to minify
+
+## Tests
+
+### Configuration
+
+-Add `check-prop-types` for propTypes tests.
+-Customize jsconfig to run correctly Jest for VS Code plugin.
+-Customize eslint rule to specify special files to ignore imports from dev dependencies.
