@@ -4,14 +4,19 @@ import styles from './index.module.scss'
 
 const Header = ({ invert, title, subtitle, rightContent, children }) => {
   return (
-    <div className={styles.background}>
+    <div className={styles.background} data-test="headerWrapper">
       <div className={styles.container}>
-        <div className={`${styles.left} ${invert ? styles.invert : ''}`}>
+        <div
+          className={`${styles.left} ${invert ? styles.invert : ''}`}
+          data-test="headerContainer"
+        >
           <h1>{title}</h1>
           {!children && <span>{subtitle}</span>}
           {children}
         </div>
-        <div className={styles.right}>{rightContent}</div>
+        <div className={styles.right} data-test="headerRightContent">
+          {rightContent}
+        </div>
       </div>
     </div>
   )

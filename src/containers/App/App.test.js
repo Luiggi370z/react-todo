@@ -1,9 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import { findByTestAttr } from 'utils/testsMethods'
 import App from '.'
-
-const findByTestAttr = (component, attr) =>
-  component.find(`[data-test='${attr}']`)
 
 describe('App Container', () => {
   it('renders without crashing', () => {
