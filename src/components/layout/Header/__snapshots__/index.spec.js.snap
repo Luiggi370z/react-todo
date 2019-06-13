@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Component Have Props should render and matches the snap shot 1`] = `
+<div
+  className="background"
+  data-test="headerWrapper"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="left "
+      data-test="headerContainer"
+    >
+      <h1>
+        Title
+      </h1>
+      <div>
+        node
+      </div>
+    </div>
+    <div
+      className="right"
+      data-test="headerRightContent"
+    >
+      <div>
+        node
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Header Component Have Props should render right content properly 1`] = `
+<div
+  className="right"
+  data-test="headerRightContent"
+>
+  <div>
+    test
+  </div>
+</div>
+`;

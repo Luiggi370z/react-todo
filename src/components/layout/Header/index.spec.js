@@ -1,9 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+import toJson from 'enzyme-to-json'
 import { findByTestAttr, checkProps } from 'utils/testsMethods'
 import Header from '.'
 
 const setUp = (props = {}) => shallow(<Header {...props} />)
+const createProps = props => ({
+  title: 'Title',
+  ...props,
+})
 
 describe('Header Component', () => {
   describe('Check PropTypes', () => {
@@ -22,44 +27,49 @@ describe('Header Component', () => {
   })
 
   describe('Have Props', () => {
-    it('should render without errors', () => {
-      const props = { title: 'Test' }
+    it('should render and matches the snap shot', () => {
+      const props = createProps({
+        rightContent: <div>node</div>,
+        children: <div>node</div>,
+      })
       const wrapper = findByTestAttr(setUp(props), 'headerWrapper')
+
+      expect(toJson(wrapper)).toMatchSnapshot()
+    })
+
+    it('should render without errors', () => {
+      const wrapper = findByTestAttr(setUp(createProps()), 'headerWrapper')
 
       expect(wrapper.length).toBe(1)
     })
 
     it('should has invert class if invert is true', () => {
-      const props = { title: 'Test', invert: true }
+      const props = createProps({ invert: true })
       const headerContainer = findByTestAttr(setUp(props), 'headerContainer')
 
       expect(headerContainer.hasClass('invert')).toBeTruthy()
     })
 
     it('should render right content properly', () => {
-      const rightContent = <div>test</div>
-      const props = { title: 'Test', rightContent }
+      const props = createProps({ rightContent: <div>test</div> })
       const headerRightContent = setUp(props).find(
         `[data-test='headerRightContent']`,
       )
 
-      expect(headerRightContent.contains(rightContent)).toBeTruthy()
+      expect(toJson(headerRightContent)).toMatchSnapshot()
     })
 
     it('should render children if exist as prop', () => {
       const children = <div>test</div>
-      const props = { title: 'Test', children }
-      const headerContainer = shallow(<Header {...props} />).find(
-        `[data-test='headerContainer']`,
-      )
+      const props = createProps({ children })
+      const headerContainer = setUp(props).find(`[data-test='headerContainer']`)
 
       expect(headerContainer.contains(children)).toBeTruthy()
     })
 
     it("should not render children if doesn't exist as prop", () => {
       const children = <div>test</div>
-      const props = { title: 'Test' }
-      const headerContainer = shallow(<Header {...props} />).find(
+      const headerContainer = setUp(createProps()).find(
         `[data-test='headerContainer']`,
       )
 
