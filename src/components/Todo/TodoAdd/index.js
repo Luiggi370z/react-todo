@@ -8,7 +8,7 @@ const TodoAdd = ({ toggleView }) => {
     <Fragment>
       <h1>Hi!</h1>
       <p className={styles.description}>
-        Nothing to do yet? Think about it and let&lsquo;s get start!
+        Nothing to do yet? Think about it and let&lsquo;s start!
       </p>
       <Button
         large
