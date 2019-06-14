@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header Component Have Props should render and matches the snap shot 1`] = `
+exports[`Header Component Have Props should render and matches the snapshot 1`] = `
 <div
   className="background"
   data-test="headerWrapper"

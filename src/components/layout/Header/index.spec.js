@@ -27,7 +27,7 @@ describe('Header Component', () => {
   })
 
   describe('Have Props', () => {
-    it('should render and matches the snap shot', () => {
+    it('should render and matches the snapshot', () => {
       const props = createProps({
         rightContent: <div>node</div>,
         children: <div>node</div>,

@@ -24,6 +24,11 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "CI=true npm test"
+    }
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -49,6 +54,7 @@
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0"
+    "eslint-plugin-react": "^7.13.0",
+    "husky": "^2.4.1"
   }
 }
