@@ -46,7 +46,7 @@ describe('Header Component', () => {
     it('should has invert class if invert is true', () => {
       const props = createProps({ invert: true })
       const headerContainer = findByTestAttr(setUp(props), 'headerContainer')
-      const a = 3
+
       expect(headerContainer.hasClass('invert')).toBeTruthy()
     })
 
