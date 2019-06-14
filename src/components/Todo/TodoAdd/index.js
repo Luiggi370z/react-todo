@@ -10,7 +10,13 @@ const TodoAdd = ({ toggleView }) => {
       <p className={styles.description}>
         Nothing to do yet? Think about it and let&lsquo;s get start!
       </p>
-      <Button large minimal className="panel-button" onClick={toggleView}>
+      <Button
+        large
+        minimal
+        data-test="button"
+        className="panel-button"
+        onClick={toggleView}
+      >
         Add Task
       </Button>
     </Fragment>

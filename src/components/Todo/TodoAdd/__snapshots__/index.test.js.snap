@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoAdd Component Rendering should render without errors 1`] = `
+<Fragment>
+  <h1>
+    Hi!
+  </h1>
+  <p
+    className="description"
+  >
+    Nothing to do yet? Think about it and let‘s get start!
+  </p>
+  <Blueprint3.Button
+    className="panel-button"
+    data-test="button"
+    large={true}
+    minimal={true}
+    onClick={[MockFunction]}
+  >
+    Add Task
+  </Blueprint3.Button>
+</Fragment>
+`;
