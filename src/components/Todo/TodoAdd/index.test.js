@@ -11,6 +11,7 @@ describe('TodoAdd Component', () => {
     it('should not throw a warning', () => {
       const expectedProps = {
         toggleView: () => {},
+        hasProps: false,
       }
 
       const propsErr = checkProps(TodoAdd, expectedProps)
@@ -53,6 +54,26 @@ describe('TodoAdd Component', () => {
       button.simulate('click')
 
       expect(mockToggleView).toHaveBeenCalled()
+    })
+
+    test('should show text to encourage to add a task if there are no tasks yet', () => {
+      const p = findByTestAttr(wrapper, 'message')
+      const expectedText = "Nothing to do yet? Think about it and let's start!"
+
+      expect(p.text()).toEqual(expectedText)
+    })
+
+    test('should notify user when he has tasks', () => {
+      const props = {
+        toggleView: mockToggleView,
+        hasTasks: true,
+      }
+      wrapper = setUp(props)
+      const p = findByTestAttr(wrapper, 'message')
+      const expectedText =
+        'Nice! Looks like you have some stuff to do, but you can have more!'
+
+      expect(p.text()).toEqual(expectedText)
     })
   })
 })

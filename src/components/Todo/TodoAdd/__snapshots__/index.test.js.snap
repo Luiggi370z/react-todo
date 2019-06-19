@@ -7,8 +7,9 @@ exports[`TodoAdd Component Rendering should render without errors 1`] = `
   </h1>
   <p
     className="description"
+    data-test="message"
   >
-    Nothing to do yet? Think about it and let‘s start!
+    Nothing to do yet? Think about it and let's start!
   </p>
   <Blueprint3.Button
     className="panel-button"

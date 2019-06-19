@@ -22,7 +22,9 @@ const Todos = props => {
   const overlay = (
     <Overlay
       left={<Summary todos={pendingTodos} toggleView={changeView} />}
-      right={<TodoAdd toggleView={changeView} />}
+      right={
+        <TodoAdd toggleView={changeView} hasTasks={!!pendingTodos.length} />
+      }
     />
   )
 
