@@ -5,6 +5,10 @@
 Hi! there, so I started this project with the intention to practice and stablish some best practices of development, reactJs, redux and reducers, tests, folder structure, naming, linting, configurations, and more.
 I was thinking in which type of app should I create to apply those practices, after an hour I just said wait!, let's do it in the most common starter app! a ToDo App, 🤔 ok ?!?!. Then I realized that everyone has a ToDo App with the same styles or layout, so I said no! let's do something different but simple and there you have "Not Another ToDo App". Hope you enjoy it!.
 
+## App Link
+
+You can see in action [here](https://luiggi370z.github.io/react-todo/).
+
 ## Stack
 
 - ReactJS + hooks
